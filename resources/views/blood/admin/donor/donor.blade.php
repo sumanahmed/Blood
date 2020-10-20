@@ -47,9 +47,9 @@
                                 <th>Action</th>
                             </tr>
                         </tfoot>
-                        <tbody>
+                        <tbody id="allDonor">
                             @foreach($donors as $donor)
-                                <tr>
+                                <tr class="donor-{{ $donor->id }}">
                                     <td>{{ $donor->name }}</td>
                                     <td>{{ $donor->bloodGroup->name }}</td>
                                     <td>{{ $donor->last_donate_date }}</td>
@@ -81,96 +81,118 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="name">Name <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="name" class="form-control" placeholder="Enter Donar Full Name" required>
-                                <span class="text-danger errorName"> </span>
-                            </div>
-                        </div> 
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="name">Phone <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="phone" class="form-control" placeholder="Enter Donar Phone Number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                <span class="text-danger errorPhone"> </span>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" class="form-control" placeholder="Enter Donar Email">
-                                <span class="text-danger errorEmail"> </span>
-                            </div>
-                        </div> 
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="division_id">Division <span class="text-danger" title="Required">*</span></label>
-                                <select id="division_id" class="form-control select2">
-                                  <option value="">Select Division</option>
-                                </select>
-                                <span class="text-danger errorDivisionId"> </span>
+                    <form id="createDonorForm" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }} {{ method_field('POST') }}
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="name">Name <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="name" class="form-control" placeholder="Enter Donar Full Name" required>
+                                    <span class="text-danger errorName"> </span>
+                                </div>
+                            </div> 
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="name">Phone <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="phone" class="form-control" placeholder="Enter Donar Phone Number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <span class="text-danger errorPhone"> </span>
+                                </div>
                             </div>
                         </div>
-                      </div>   
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
-                                <select id="district_id" class="form-control select2">
-                                  <option value="">Select District</option>
-                                </select>
-                                <span class="text-danger errorDistrictId"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" id="email" class="form-control" placeholder="Enter Donar Email">
+                                    <span class="text-danger errorEmail"> </span>
+                                </div>
+                            </div> 
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="division_id">Division <span class="text-danger" title="Required">*</span></label>
+                                    <select id="division_id" class="form-control select2">
+                                        <option value="0">Select Division</option>
+                                        @foreach($divisions as $division)
+                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger errorDivisionId"> </span>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
+                                    <select id="district_id" class="form-control select2">
+                                        <option value="">Select District</option>
+                                    
+                                    </select>
+                                    <span class="text-danger errorDistrictId"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="thana_id">Thana <span class="text-danger" title="Required">*</span></label>
+                                    <select id="thana_id" class="form-control select2">
+                                    <option value="">Select Thana</option>
+                                    </select>
+                                    <span class="text-danger errorThanaId"> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="thana_id">Thana <span class="text-danger" title="Required">*</span></label>
-                                <select id="thana_id" class="form-control select2">
-                                  <option value="">Select Thana</option>
-                                </select>
-                                <span class="text-danger errorThanaId"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="dob" class="form-control datePicker" placeholder="Enter Donar Phone Number" required>
+                                    <span class="text-danger errorDob"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Last Donate Date</label>
+                                    <input type="text" id="last_donate_date" class="form-control datePicker">
+                                    <span class="text-danger errorDob"> </span>
+                                </div>
                             </div>
                         </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="dob">Date of Birth <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="dob" class="form-control datePicker" placeholder="Enter Donar Phone Number" required>
-                                <span class="text-danger errorDob"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="permanent_address">Permanent Address <span class="text-danger" title="Required">*</span></label>
+                                    <textarea id="permanent_address" class="form-control" placeholder="Permanent Address" required></textarea>
+                                    <span class="text-danger errorPermanentAddress"> </span>
+                                </div>
+                            </div>                      
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="current_address">Current Address <span class="text-danger" title="Required">*</span></label>
+                                    <textarea id="current_address" class="form-control" placeholder="Current Address" required></textarea>
+                                    <span class="text-danger errorCurrentAddress"> </span>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Blood Group <span class="text-danger" title="Required">*</span></label>
+                                    <select id="blood_group_id" class="form-control">
+                                        @foreach($blood_groups as $blood_group)
+                                            <option value="{{ $blood_group->id }}">{{ $blood_group->name }}</option>
+                                        @endforeach
+                                    </select>                                
+                                    <span class="text-danger errorBloodGroup"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Thumbnail <span class="text-danger" title="Required">*</span></label>
+                                    <input type="file" id="thumbnail" class="form-control" required>
+                                    <span class="text-danger erroThumbnail"> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="dob">Last Donate Date</label>
-                                <input type="text" id="last_donate_date" class="form-control datePicker">
-                                <span class="text-danger errorDob"> </span>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="permanent_address">Permanent Address <span class="text-danger" title="Required">*</span></label>
-                                <textarea id="permanent_address" class="form-control" placeholder="Enter Donar Permanent Address" required></textarea>
-                                <span class="text-danger errorPermanentAddress"> </span>
-                            </div>
-                        </div> 
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="current_address">Current Address <span class="text-danger" title="Required">*</span></label>
-                                <textarea id="current_address" class="form-control" placeholder="Enter Donar Current Address" required></textarea>
-                                <span class="text-danger errorCurrentAddress"> </span>
-                            </div>
-                        </div> 
-                      </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -180,7 +202,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="addDonorModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" tabindex="-1" id="editDonorModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-default" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info text-white">
@@ -190,7 +212,8 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
+                <form id="editDonorForm" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }} {{ method_field('POST') }}
                       <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -211,7 +234,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" id="edit_email" class="form-control" placeholder="Enter Donar Email">
+                                <input type="email" id="edit_email" class="form-control" placeholder="Enter Donar Email">
                                 <span class="text-danger errorEmail"> </span>
                             </div>
                         </div> 

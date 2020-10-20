@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BloodGroup;
+use App\Models\District;
 use App\Models\Division;
+use App\Models\Donor;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
-use App\User;
 
 class DonorController extends Controller
 {
     //get all donor
     public function index(){
-        $donors         = User::where('role','donor')->get();
+        $donors         = Donor::all();
         $blood_groups   = BloodGroup::all();
         $divisions      = Division::orderBy('name','ASC')->get();
         return view('blood.admin.donor.donor', compact('donors','blood_groups','divisions'));
