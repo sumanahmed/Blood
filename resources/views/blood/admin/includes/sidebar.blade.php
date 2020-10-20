@@ -20,27 +20,33 @@
             </a>
           </li>    
           <li class="nav-item">
-            <a href="gallery.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Gallery</p>
             </a>
           </li>   
           <li class="nav-item">
-            <a href="video.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Video</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="blog.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Blogs</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="profile.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Profile</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Users</p>
             </a>
           </li>
         </ul>
