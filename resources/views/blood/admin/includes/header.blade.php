@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="_token" content="{{ csrf_token() }}">
-  <title>Shobuj Bazar | @yield('title')</title>
+  <title>Blood - @yield('title')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{{ asset('shobuj_bazar/frontend/images/favicon.ico') }}">
   <link rel="stylesheet" href="{{ asset('blood/admin/css/all.css') }}">

@@ -1,4 +1,4 @@
-@extends('shobuj_bazar.backend.layout.admin')
+@extends('blood.admin.layout.admin')
 @section('title','Dashboard')
 
 @section('content')
@@ -50,7 +50,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3></h3>
+                <h3>5</h3>
                 <p>Total Donor</p>
               </div>             
             </div>

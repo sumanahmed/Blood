@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //eloquent relation with blood group
+    public function bloodGroup(){
+        return $this->belongsTo('App\Models\BloodGroup','blood_group_id');
+    }
+    //eloquent relation with district
+    public function district(){
+        return $this->belongsTo('App\Models\District','district_id');
+    }
 }

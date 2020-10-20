@@ -12,3 +12,10 @@ Route::post('/admin/logout','Admin\AdminController@logout')->name('backend.admin
 Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function(){
     Route::get('/dashboard', 'Admin\AdminController@dashboard')->name('backend.dashboard');
 });
+
+Route::group(['prefix'=>'admin/donor', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\DonorController@index')->name('backend.donor.index');
+    Route::post('/store', 'Admin\DonorController@store')->name('backend.donor.store');
+    Route::post('/update', 'Admin\DonorController@update')->name('backend.donor.update');
+    Route::post('/destroy', 'Admin\DonorController@destroy')->name('backend.donor.destroy');
+});

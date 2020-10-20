@@ -14,9 +14,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="Users.html" class="nav-link">
+            <a href="{{ route('backend.donor.index') }}" class="nav-link nav-donor">
               <i class="nav-icon fas fa-users"></i>
-              <p>Users</p>
+              <p>Donor</p>
             </a>
           </li>    
           <li class="nav-item">

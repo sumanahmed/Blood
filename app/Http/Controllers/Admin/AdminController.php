@@ -20,9 +20,9 @@ class AdminController extends Controller
             'email'     => 'required|email',
             'password'  => 'required'
         ]);
-        $user = User::select('role')->where('email', $request->email)->first();
-        if($user != null && $user['role'] == 'admin'){ 
-            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){              
+        $user = User::where('email', $request->email)->where('role','admin')->first();
+        if($user != null){ 
+            if( Auth::attempt(['email'=>$request->email,'password'=>$request->password]) ){              
                 return redirect()->route('backend.dashboard')->with('message','Successfully logged in !');
             }else{
                 return redirect()->route('backend.admin.login')->with('error_message','Email/Password is wrong !');
