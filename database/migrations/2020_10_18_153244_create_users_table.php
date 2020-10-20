@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->date('dob');
-            $table->date('last_donate_date');
+            $table->date('last_donate_date')->nullable();
             $table->string('permanent_address');
             $table->string('current_address');
-            $table->string('type')->comment('donar,user');
+            $table->string('role')->comment('donar,admin');
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('thana_id');
