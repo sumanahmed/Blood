@@ -22,7 +22,7 @@ class CreateDonorsTable extends Migration
             $table->date('last_donate_date')->nullable();
             $table->string('permanent_address');
             $table->string('current_address');
-            $table->string('role')->comment('donar,admin');
+            $table->string('designation')->nullable();
             $table->unsignedBigInteger('blood_group_id');
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('district_id');
@@ -31,6 +31,10 @@ class CreateDonorsTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('1=Active,0=Inactive');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('google')->nullable();
+            $table->string('instagram')->nullable();
             $table->foreign('blood_group_id')->references('id')->on('blood_groups')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
