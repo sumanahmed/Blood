@@ -1,5 +1,5 @@
 @extends('blood.admin.layout.admin')
-@section('title','Dashboard')
+@section('title','User')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
