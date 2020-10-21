@@ -19,7 +19,9 @@ class CreateBlogsTable extends Migration
             $table->text('description');
             $table->string('thumbnail');
             $table->tinyInteger('status')->comment('1=Show, 0=Hide')->default(1);
+            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('category_id')->references('id')->on('category_id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
