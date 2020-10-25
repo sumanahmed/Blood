@@ -14,10 +14,10 @@ $("#createGallery").click(function (e) {
         data: form_data,
         success:function(response){
             if((response.errors)){
-                if(response.errors.en_name){
-                    $('.errorEnName').text(response.errors.en_name);
+                if(response.errors.name){
+                    $('.errorName').text(response.errors.name);
                 }else{
-                    $('.errorEnName').text('');
+                    $('.errorName').text('');
                 }
                 if (response.errors.image) {
                     $('.erroImage').text(response.errors.image);
@@ -70,10 +70,10 @@ $("#updateGallery").click(function (e) {
         data: form_data,
         success:function(response){
             if((response.errors)){
-                if(response.errors.en_name){
-                    $('.errorEnName').text(response.errors.en_name);
+                if(response.errors.name){
+                    $('.errorName').text(response.errors.name);
                 }else{
-                    $('.errorEnName').text('');
+                    $('.errorName').text('');
                 }
                 if (response.errors.image) {
                     $('.erroImage').text(response.errors.image);

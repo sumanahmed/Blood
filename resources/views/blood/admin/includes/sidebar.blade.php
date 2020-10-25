@@ -31,11 +31,23 @@
               <p>Video</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Blogs</p>
+          <li class="nav-item has-treeview menu-blogs">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>Blogs<i class="fas fa-angle-left right"></i></p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('backend.category.index') }}" class="nav-link nav-category">
+                  <p>Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link nav-post">
+                  <p>Posts</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">

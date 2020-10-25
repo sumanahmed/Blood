@@ -33,3 +33,10 @@ Route::group(['prefix'=>'admin/gallery', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\GalleryController@update')->name('backend.gallery.update');
     Route::post('/destroy', 'Admin\GalleryController@destroy')->name('backend.gallery.destroy');
 });
+
+Route::group(['prefix'=>'admin/category', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\CategoryController@index')->name('backend.category.index');
+    Route::post('/store', 'Admin\CategoryController@store')->name('backend.category.store');
+    Route::post('/update', 'Admin\CategoryController@update')->name('backend.category.update');
+    Route::post('/destroy', 'Admin\CategoryController@destroy')->name('backend.category.destroy');
+});
