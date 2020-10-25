@@ -26,3 +26,10 @@ Route::group(['prefix'=>'admin/user', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\UserController@update')->name('backend.user.update');
     Route::post('/destroy', 'Admin\UserController@destroy')->name('backend.user.destroy');
 });
+
+Route::group(['prefix'=>'admin/gallery', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\GalleryController@index')->name('backend.gallery.index');
+    Route::post('/store', 'Admin\GalleryController@store')->name('backend.gallery.store');
+    Route::post('/update', 'Admin\GalleryController@update')->name('backend.gallery.update');
+    Route::post('/destroy', 'Admin\GalleryController@destroy')->name('backend.gallery.destroy');
+});
