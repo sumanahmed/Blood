@@ -34,6 +34,13 @@ Route::group(['prefix'=>'admin/gallery', 'middleware'=>'admin'], function(){
     Route::post('/destroy', 'Admin\GalleryController@destroy')->name('backend.gallery.destroy');
 });
 
+Route::group(['prefix'=>'admin/video', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\VideoController@index')->name('backend.video.index');
+    Route::post('/store', 'Admin\VideoController@store')->name('backend.video.store');
+    Route::post('/update', 'Admin\VideoController@update')->name('backend.video.update');
+    Route::post('/destroy', 'Admin\VideoController@destroy')->name('backend.video.destroy');
+});
+
 Route::group(['prefix'=>'admin/category', 'middleware'=>'admin'], function(){
     Route::get('/', 'Admin\CategoryController@index')->name('backend.category.index');
     Route::post('/store', 'Admin\CategoryController@store')->name('backend.category.store');
