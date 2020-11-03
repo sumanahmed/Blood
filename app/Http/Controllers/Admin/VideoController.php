@@ -32,7 +32,7 @@ class VideoController extends Controller
             if($request->image){
                 $image          = $request->file('image');
                 $image_name     = "video_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/video/';
+                $directory      = 'blood/admin/uploads/images/video/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $video->image    = $image_url;
@@ -71,7 +71,7 @@ class VideoController extends Controller
                 }
                 $image          = $request->file('image');
                 $image_name     = "video_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/video/';
+                $directory      = 'blood/admin/uploads/images/video/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $video->image= $image_url;

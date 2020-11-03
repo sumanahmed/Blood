@@ -30,7 +30,7 @@ class GalleryController extends Controller
             if($request->image){
                 $image          = $request->file('image');
                 $image_name     = "gallery_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/gallery/';
+                $directory      = 'blood/admin/uploads/images/gallery/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $gallery->image    = $image_url;
@@ -67,7 +67,7 @@ class GalleryController extends Controller
                 }
                 $image          = $request->file('image');
                 $image_name     = "gallery_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/gallery/';
+                $directory      = 'blood/admin/uploads/images/gallery/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $gallery->image= $image_url;

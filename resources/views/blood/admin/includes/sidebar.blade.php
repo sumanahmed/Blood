@@ -43,7 +43,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link nav-post">
+                <a href="{{ route('backend.post.index') }}" class="nav-link nav-post">
                   <p>Posts</p>
                 </a>
               </li>

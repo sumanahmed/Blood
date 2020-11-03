@@ -47,3 +47,10 @@ Route::group(['prefix'=>'admin/category', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\CategoryController@update')->name('backend.category.update');
     Route::post('/destroy', 'Admin\CategoryController@destroy')->name('backend.category.destroy');
 });
+
+Route::group(['prefix'=>'admin/post', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\PostController@index')->name('backend.post.index');
+    Route::post('/store', 'Admin\PostController@store')->name('backend.post.store');
+    Route::post('/update', 'Admin\PostController@update')->name('backend.post.update');
+    Route::post('/destroy', 'Admin\PostController@destroy')->name('backend.post.destroy');
+});

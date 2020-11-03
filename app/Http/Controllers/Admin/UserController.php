@@ -35,7 +35,7 @@ class UserController extends Controller
             if($request->thumbnail){
                 $image          = $request->file('thumbnail');
                 $image_name     = "user_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/user/';
+                $directory      = 'blood/admin/uploads/images/user/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $user->thumbnail= $image_url;
@@ -79,7 +79,7 @@ class UserController extends Controller
                 }
                 $image          = $request->file('thumbnail');
                 $image_name     = "user_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'blood/backend/uploads/images/user/';
+                $directory      = 'blood/admin/uploads/images/user/';
                 $image->move($directory, $image_name);
                 $image_url      = $directory.$image_name;
                 $user->thumbnail= $image_url;
