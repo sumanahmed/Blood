@@ -68,7 +68,7 @@ $("#updateCategory").click(function (e) {
                     '<tr class="category-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.name +'</td>\n' +                        
                         '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editCategory" data-target="#editCategoryModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editCategory" data-target="#editCategoryModal" data-id="'+ response.data.id +'" data-name="'+ response.data.name +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
                             '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteCategory" data-target="#deleteCategoryModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+

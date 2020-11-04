@@ -54,3 +54,10 @@ Route::group(['prefix'=>'admin/post', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\PostController@update')->name('backend.post.update');
     Route::post('/destroy', 'Admin\PostController@destroy')->name('backend.post.destroy');
 });
+
+Route::group(['prefix'=>'admin/faq', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\FaqController@index')->name('backend.faq.index');
+    Route::post('/store', 'Admin\FaqController@store')->name('backend.faq.store');
+    Route::post('/update', 'Admin\FaqController@update')->name('backend.faq.update');
+    Route::post('/destroy', 'Admin\FaqController@destroy')->name('backend.faq.destroy');
+});

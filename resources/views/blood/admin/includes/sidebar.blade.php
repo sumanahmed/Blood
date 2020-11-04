@@ -62,7 +62,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('backend.faq.index') }}" class="nav-link nav-user">
+            <a href="{{ route('backend.faq.index') }}" class="nav-link nav-faq">
               <i class="nav-icon fas fa-users"></i>
               <p>FAQs</p>
             </a>
