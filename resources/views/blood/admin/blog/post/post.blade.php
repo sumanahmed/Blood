@@ -26,16 +26,18 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Link</th>
-                                <th>Image</th>
+                                <th>Category</th>
+                                <th>Thumbnail</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Title</th>
-                                <th>Link</th>
-                                <th>Image</th>
+                                <th>Category</th>
+                                <th>Thumbnail</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -43,11 +45,12 @@
                             @foreach($posts as $post)
                                 <tr class="post-{{ $post->id }}">
                                     <td>{{ $post->title }}</td>
-                                    <td>{{ $post->link }}</td>
-                                    <td><img src="{{ asset($post->image) }}" alt="Post image" style="width: 60px;height: 60px;"></td>
+                                    <td>{{ $post->category->name }}</td>
+                                    <td><img src="{{ asset($post->thumbnail) }}" alt="Post image" style="width: 60px;height: 60px;"></td>
+                                    <td>{{ $post->status == 1 ? 'Show' : 'Hide' }}</td>
                                     <td style="vertical-align:middle;text-align:center;">
-                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostmodal" data-id="{{ $post->id }}" data-title="{{ $post->title }}" data-link="{{ $post->link }}" data-image="{{ $post->image }}"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostmodal" data-id="{{ $post->id }}"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="{{ $post->id }}" data-title="{{ $post->title }}" data-description="{{ $post->description }}" data-category_id="{{ $post->category_id }}" data-status="{{ $post->status }}" data-thumbnail="{{ $post->thumbnail }}"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="{{ $post->id }}"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

@@ -1,4 +1,4 @@
-//create Video
+//create Post
 $(document).on('click', '#createPost', function (e) {
     e.preventDefault();    
     var form_data = new FormData($("#createPostForm")[0]);
@@ -29,43 +29,47 @@ $(document).on('click', '#createPost', function (e) {
                 }
             }else{
                 $('#addPostModal').modal('hide');
-                $("#allVideo").append('' +
+                $("#allPost").append('' +
                     '<tr class="post-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.title +'</td>\n' +
                         '<td>'+ response.data.link +'</td>\n' +
                         '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
                         '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editVideo" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-link="'+ response.data.link +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
-                            '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteVideo" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
+                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                            '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
                 '');
                 $("#name").val('');
                 $("#image").val('');
-                toastr.success('Video successfully created')
+                toastr.success('Post successfully created')
             }
         }
     });
 });
 
-//open edit Video modal
-$(document).on('click', '#editVideo', function () {
-    var image = image_base_path + $(this).data('image');
+//open edit Post modal
+$(document).on('click', '#editPost', function () {
+    var thumbnail = image_base_path + $(this).data('thumbnail');
     $('#editPostModal').modal('show');
     $('#edit_id').val($(this).data('id'));
     $('#edit_title').val($(this).data('title'));
-    $('#edit_link').val($(this).data('link'));
-    $("#previousImage").attr("src", image);
+    $('#edit_description').val($(this).data('description'));
+    $('#edit_category_id').val($(this).data('category_id'));
+    $('#edit_status').val($(this).data('status'));
+    $("#previousImage").attr("src", thumbnail);
  });
 
-// update Video
-$("#updateVideo").click(function (e) {
+// update Post
+$("#updatePost").click(function (e) {
     e.preventDefault();
     console.log($("#edit_id").val());
-    var form_data = new FormData($("#editVideoForm")[0]);
+    var form_data = new FormData($("#editPostForm")[0]);
     form_data.append('id', $("#edit_id").val());
     form_data.append('title', $("#edit_title").val());
-    form_data.append('link', $("#edit_link").val());
+    form_data.append('description', $("#edit_description").val());
+    form_data.append('category_id', $("#edit_category_id :selected").val());
+    form_data.append('status', $("#edit_status :selected").val());
     $.ajax({
         type:'POST',
         url: "/admin/post/update",
@@ -87,31 +91,31 @@ $("#updateVideo").click(function (e) {
                 }
             }else{
                 $('#editPostModal').modal('hide');
-                $("tr.video-"+ response.data.id).replaceWith('' +
-                    '<tr class="Video-'+ response.data.id +'">\n' +
+                $("tr.post-"+ response.data.id).replaceWith('' +
+                    '<tr class="post-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.title +'</td>\n' +
                         '<td>'+ response.data.link +'</td>\n' +
                         '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
                         '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editVideo" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-link="'+ response.data.link +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
-                            '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteVideo" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
+                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                            '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
                 '');
-                toastr.success('Video successfully updated.')
+                toastr.success('Post successfully updated.')
             }
         }
     });
 });
 
 //open delete category modal
-$(document).on('click', '#deleteVideo', function () {
+$(document).on('click', '#deletePost', function () {
     $('#deletePostModal').modal('show');
     $('#del_id').val($(this).data('id'));
  });
 
 //destroy category
-$("#destroyVideo").click(function(){
+$("#destroyPost").click(function(){
     $.ajax({
         type: 'POST',
         url: "/admin/post/destroy",
@@ -124,7 +128,7 @@ $("#destroyVideo").click(function(){
             if(response.status == '403'){
                 toastr.error(response.message)
             }else{
-                $('.video-' + $('#del_id').val()).remove();
+                $('.post-' + $('#del_id').val()).remove();
                 toastr.success(response.message)
             }
         }

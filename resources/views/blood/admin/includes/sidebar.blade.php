@@ -61,6 +61,12 @@
               <p>Users</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.faq.index') }}" class="nav-link nav-user">
+              <i class="nav-icon fas fa-users"></i>
+              <p>FAQs</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

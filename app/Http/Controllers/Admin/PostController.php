@@ -24,11 +24,10 @@ class PostController extends Controller
             'title'         => 'required',
             'description'   => 'required',
             'thumbnail'     => 'required',
-            'category_id '  => 'required',
         ]);
-        if($validators->fails()){
+        if($validators->fails()){ 
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
-        }else{
+        }else{  
             $blog               = new Blog();
             $blog->title        = $request->title;
             $blog->description  = $request->description;
@@ -36,11 +35,11 @@ class PostController extends Controller
             if($request->thumbnail){
                 $thumbnail          = $request->file('thumbnail');
                 $thumbnail_name     = "thumbnail_".time().".".$thumbnail->getClientOriginalExtension();
-                $directory          = 'blood/backend/uploads/images/thumbnail/';
+                $directory          = 'blood/admin/uploads/images/thumbnail/';
                 $thumbnail->move($directory, $thumbnail_name);
                 $thumbnail_url      = $directory.$thumbnail_name;
                 $blog->thumbnail    = $thumbnail_url;
-            } dd($blog);
+            } 
             if($blog->save()){
                 return Response::json([
                     'status'    => 201,
@@ -62,8 +61,6 @@ class PostController extends Controller
         $validators=Validator::make($request->all(),[
             'title'         => 'required',
             'description'   => 'required',
-            'thumbnail'     => 'required',
-            'category_id '  => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
@@ -78,7 +75,7 @@ class PostController extends Controller
                 }
                 $thumbnail          = $request->file('thumbnail');
                 $thumbnail_name     = "thumbnail_".time().".".$thumbnail->getClientOriginalExtension();
-                $directory          = 'blood/backend/uploads/images/thumbnail/';
+                $directory          = 'blood/admin/uploads/images/thumbnail/';
                 $thumbnail->move($directory, $thumbnail_name);
                 $thumbnail_url      = $directory.$thumbnail_name;
                 $blog->thumbnail= $thumbnail_url;
