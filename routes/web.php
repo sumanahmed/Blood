@@ -61,3 +61,10 @@ Route::group(['prefix'=>'admin/faq', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\FaqController@update')->name('backend.faq.update');
     Route::post('/destroy', 'Admin\FaqController@destroy')->name('backend.faq.destroy');
 });
+
+Route::group(['prefix'=>'admin/slider', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\SliderController@index')->name('backend.slider.index');
+    Route::post('/store', 'Admin\SliderController@store')->name('backend.slider.store');
+    Route::post('/update', 'Admin\SliderController@update')->name('backend.slider.update');
+    Route::post('/destroy', 'Admin\SliderController@destroy')->name('backend.slider.destroy');
+});

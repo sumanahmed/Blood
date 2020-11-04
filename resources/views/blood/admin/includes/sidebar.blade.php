@@ -67,6 +67,12 @@
               <p>FAQs</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.slider.index') }}" class="nav-link nav-slider">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Slider</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

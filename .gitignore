@@ -1,6 +1,6 @@
 /node_modules
 /public/hot
-/public/admin/uploads
+/public/blood/admin/uploads
 /public/storage
 /storage/*.key
 /vendor
