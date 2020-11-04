@@ -68,3 +68,10 @@ Route::group(['prefix'=>'admin/slider', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\SliderController@update')->name('backend.slider.update');
     Route::post('/destroy', 'Admin\SliderController@destroy')->name('backend.slider.destroy');
 });
+
+Route::group(['prefix'=>'admin/sponsor', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\SponsorController@index')->name('backend.sponsor.index');
+    Route::post('/store', 'Admin\SponsorController@store')->name('backend.sponsor.store');
+    Route::post('/update', 'Admin\SponsorController@update')->name('backend.sponsor.update');
+    Route::post('/destroy', 'Admin\SponsorController@destroy')->name('backend.sponsor.destroy');
+});

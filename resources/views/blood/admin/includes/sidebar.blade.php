@@ -73,6 +73,12 @@
               <p>Slider</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.sponsor.index') }}" class="nav-link nav-sponsor">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Sponsors</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
