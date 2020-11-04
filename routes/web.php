@@ -75,3 +75,10 @@ Route::group(['prefix'=>'admin/sponsor', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\SponsorController@update')->name('backend.sponsor.update');
     Route::post('/destroy', 'Admin\SponsorController@destroy')->name('backend.sponsor.destroy');
 });
+
+Route::group(['prefix'=>'admin/campaign', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\CampaignController@index')->name('backend.campaign.index');
+    Route::post('/store', 'Admin\CampaignController@store')->name('backend.campaign.store');
+    Route::post('/update', 'Admin\CampaignController@update')->name('backend.campaign.update');
+    Route::post('/destroy', 'Admin\CampaignController@destroy')->name('backend.campaign.destroy');
+});

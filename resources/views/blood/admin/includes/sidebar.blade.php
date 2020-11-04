@@ -79,6 +79,12 @@
               <p>Sponsors</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.campaign.index') }}" class="nav-link nav-campaign">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Campaign</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
