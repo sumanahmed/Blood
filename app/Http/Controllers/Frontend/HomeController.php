@@ -11,4 +11,8 @@ class HomeController extends Controller
     public function home(){ 
         return view("blood.frontend.home.index");
     }
+    //show about page
+    public function about(){ 
+        return view("blood.frontend.home.about");
+    }
 }
