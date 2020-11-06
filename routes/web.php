@@ -87,3 +87,4 @@ Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
 Route::get('/about', 'Frontend\HomeController@about')->name('frontend.about');
 Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.campaign');
 Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
+Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');

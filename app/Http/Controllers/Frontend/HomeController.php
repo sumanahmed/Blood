@@ -23,4 +23,8 @@ class HomeController extends Controller
     public function faq(){ 
         return view("blood.frontend.home.faq");
     }
+    //show gallery page
+    public function gallery(){ 
+        return view("blood.frontend.home.gallery");
+    }
 }
