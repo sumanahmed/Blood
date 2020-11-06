@@ -82,3 +82,5 @@ Route::group(['prefix'=>'admin/campaign', 'middleware'=>'admin'], function(){
     Route::post('/update', 'Admin\CampaignController@update')->name('backend.campaign.update');
     Route::post('/destroy', 'Admin\CampaignController@destroy')->name('backend.campaign.destroy');
 });
+
+Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
