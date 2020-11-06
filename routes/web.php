@@ -85,3 +85,4 @@ Route::group(['prefix'=>'admin/campaign', 'middleware'=>'admin'], function(){
 
 Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
 Route::get('/about', 'Frontend\HomeController@about')->name('frontend.about');
+Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.campaign');
