@@ -26,13 +26,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="logo" href="index.html"><img alt="" src="{{ asset('blood/frontend/images/logo.png') }}"></a>
+                    <a class="logo" href="{{ route('frontend.index') }}"><img alt="" src="{{ asset('blood/frontend/images/logo.png') }}"></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html" title="Home">Home</a></li>
-                        <li><a href="about-us.html" title="About Us">About Us</a></li>
-                        <li><a href="campaign.html">Campaigns</a></li>
+                        <li><a href="{{ route('frontend.index') }}" title="Home">Home</a></li>
+                        <li><a href="{{ route('frontend.about') }}" title="About Us">About Us</a></li>
+                        <li><a href="{{ route('frontend.campaign') }}">Campaigns</a></li>
                         <li><a href="faq.html" title="FAQ">FAQ</a></li>
                         <li><a href="gallery.html" title="Gallery">Gallery</a></li>
                         <li><a href="blog.html">All Posts</a></li> 
