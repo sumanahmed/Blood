@@ -27,8 +27,12 @@ class HomeController extends Controller
     public function gallery(){ 
         return view("blood.frontend.home.gallery");
     }
-    //show post page
+    //show blog page
     public function blog(){ 
         return view("blood.frontend.home.blog");
+    }
+    //show contact page
+    public function contact(){ 
+        return view("blood.frontend.home.contact");
     }
 }

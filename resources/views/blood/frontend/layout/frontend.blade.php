@@ -24,9 +24,9 @@
         @yield('styles')
     </head>
     <body> 
-        <div id="preloader">
+        <!-- <div id="preloader">
             <span class="margin-bottom"><img src="{{ asset('blood/frontend/images/loader.gif') }}" alt="" /></span>
-        </div>
+        </div> -->
         @include('blood.frontend.includes.header')
         @yield('content')
         @include('blood.frontend.includes.footer') 

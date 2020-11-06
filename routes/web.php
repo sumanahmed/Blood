@@ -89,3 +89,4 @@ Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.camp
 Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
 Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');
 Route::get('/blog', 'Frontend\HomeController@blog')->name('frontend.blog');
+Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
