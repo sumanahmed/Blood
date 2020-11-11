@@ -26,50 +26,13 @@
         </div> <!--  end .container -->
         <div class="container wow fadeInUp">
             <div class="no-padding-gallery gallery-carousel">
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_1.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_1.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_2.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_2.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_3.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_3.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_4.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_4.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_5.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_5.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_6.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_6.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_7.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_8.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="{{ asset('blood/frontend/images/gallery_8.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_7.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
+                @foreach($gallerys as $gallery)
+                    <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset($gallery->image) }}">
+                        <figure class="gallery-img">
+                            <img src="{{ asset($gallery->image) }}" alt="gallery image" />
+                        </figure> <!-- end .cause-img  -->
+                    </a> <!-- end .gallery-light-box  -->
+                @endforeach                
             </div> <!-- end .row  -->
         </div><!-- end .container-fluid  -->
     </section>
