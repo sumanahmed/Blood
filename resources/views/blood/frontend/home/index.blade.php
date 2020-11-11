@@ -178,117 +178,35 @@
                 </div> <!-- end .col-sm-12  --> 
             </div> <!-- end .row  -->
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="event-latest">
-                        <div class="row"> 
-                            <div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
-                                <div class="event-latest-thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('blood/frontend/images/event_1.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                            </div> <!--  col-sm-5  -->
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="event-details">
-                                    <a class="latest-date" href="#">14 June, 2017</a>
-                                    <h4 class="event-latest-title">
-                                        <a href="#">World Blood Donors Day</a>
-                                    </h4>
-                                    <p>Every year, on 14 June, countries around the world celebrate World Blood Donor Day. The event serves to thank voluntary.</p>
-                                    <div class="event-latest-details">
-                                        <a class="author" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 10.00am - 3.00pm</a>
-                                        <a class="comments" href="#"> <i class="fa fa-map-marker" aria-hidden="true"></i> California, USA</a>
+                @foreach($campaigns as $campaign)
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="event-latest">
+                            <div class="row"> 
+                                <div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
+                                    <div class="event-latest-thumbnail">
+                                        <a href="#">
+                                            <img src="{{ asset($campaign->image) }}" alt="">
+                                        </a>
                                     </div>
-                                </div>
-                            </div> <!--  col-sm-7  -->
-                        </div>
-                    </div>
-                </div> <!--  col-sm-6  -->
-
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="event-latest ">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
-                                <div class="event-latest-thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('blood/frontend/images/event_2.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                            </div> <!--  col-sm-5  -->
-
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="event-details">
-                                    <a class="latest-date" href="#">20 Sep, 2017</a>
-                                    <h4 class="event-latest-title">
-                                        <a href="#">O- Blood donors needed</a>
-                                    </h4>
-                                    <p>O Negative blood cells are called “universal” meaning they can be transfused to almost any patient in need and blood cells are safest.</p>
-                                    <div class="event-latest-details">
-                                        <a class="author" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 10.00am - 3.00pm</a>
-                                        <a class="comments" href="#"> <i class="fa fa-map-marker" aria-hidden="true"></i> California, USA</a>
+                                </div> <!--  col-sm-5  -->
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="event-details">
+                                        <a class="latest-date" href="#">{{ $campaign->date }}14 June, 2017</a>
+                                        <h4 class="event-latest-title">
+                                            <a href="#">{{ $campaign->title }}</a>
+                                        </h4>
+                                        <p>{{ $campaign->description }}</p>
+                                        <div class="event-latest-details">
+                                            <a class="comments" href="#"> <i class="fa fa-map-marker" aria-hidden="true"></i>{{ $campaign->location }}</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!--  col-sm-7  -->
+                                </div> <!--  col-sm-7  -->
+                            </div>
                         </div>
-                    </div>
-                </div> <!--  col-sm-6  -->
+                    </div> 
+                @endforeach
             </div> <!--  end .row  -->
-
-            <div class="row margin-bottom-30">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="event-latest">
-                        <div class="row"> 
-                            <div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
-                                <div class="event-latest-thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('blood/frontend/images/event_3.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                            </div> <!--  col-sm-5  -->
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="event-details">
-                                    <a class="latest-date" href="#">20 Sep, 2017</a>
-                                    <h4 class="event-latest-title">
-                                        <a href="#">You are Somebody’s Type</a>
-                                    </h4>
-                                    <p>Many people has same blood group like you. so donate now and bring smiles in their face and encourage others for donate blood.</p>
-                                    <div class="event-latest-details">
-                                        <a class="author" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 10.00am - 3.00pm</a>
-                                        <a class="comments" href="#"> <i class="fa fa-map-marker" aria-hidden="true"></i> California, USA</a>
-                                    </div>
-                                </div>
-                            </div> <!--  col-sm-7  -->
-                        </div>
-                    </div>
-                </div> <!--  col-sm-6  -->
-
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="event-latest">
-                        <div class="row"> 
-                            <div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
-                                <div class="event-latest-thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('blood/frontend/images/event_4.jpg') }}" alt="">
-                                    </a>
-                                </div>
-                            </div> <!--  col-sm-5  -->
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="event-details">
-                                    <a class="latest-date" href="#">20 Sep, 2017</a>
-                                    <h4 class="event-latest-title">
-                                        <a href="#">Donation - Feel Real Peace</a>
-                                    </h4>
-                                    <p>You're the real hero because you can gift a new life for patient.So donate your blood and enjoy a precious life. Don't fear, it's really easy.</p>
-                                    <div class="event-latest-details">
-                                        <a class="author" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 10.00am - 3.00pm</a>
-                                        <a class="comments" href="#"> <i class="fa fa-map-marker" aria-hidden="true"></i> California, USA</a>
-                                    </div>
-                                </div>
-                            </div> <!--  col-sm-7  -->
-                        </div>
-                    </div>
-                </div> <!--  col-sm-6  -->
-            </div> <!--  end .row  -->     
+ 
             <div class="row">
                 <div class="col-sm-12 col-md-4 col-md-offset-4 text-center">
                     <a class="btn btn-load-more" href="#">Load All Campaigns</a>
@@ -377,51 +295,13 @@
         </div> <!--  end .container -->
         <div class="container-fluid wow fadeInUp">
             <div class="no-padding-gallery gallery-carousel">
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="images/gallery_1.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_1.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="images/gallery_2.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_2.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="images/gallery_3.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_3.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="images/gallery_4.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_4.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="images/gallery_5.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_5.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="images/gallery_6.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_6.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
-
-                <a class="gallery-light-box xs-margin" data-gall="myGallery" href="images/gallery_7.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_8.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a> <!-- end .gallery-light-box  -->
-
-                <a class="gallery-light-box xs-margin"  data-gall="myGallery" href="images/gallery_8.jpg') }}">
-                    <figure class="gallery-img">
-                        <img src="{{ asset('blood/frontend/images/gallery_7.jpg') }}" alt="gallery image" />
-                    </figure> <!-- end .cause-img  -->
-                </a>
+                @foreach($gallerys as $gallery)
+                    <a class="gallery-light-box xs-margin" data-gall="myGallery" href="{{ asset($gallery->image) }}">
+                        <figure class="gallery-img">
+                            <img src="{{ asset($gallery->image) }}" alt="gallery image" />
+                        </figure> <!-- end .cause-img  -->
+                    </a> <!-- end .gallery-light-box  -->
+                @endforeach    
             </div> <!-- end .row  -->
         </div><!-- end .container-fluid  -->
     </section>
