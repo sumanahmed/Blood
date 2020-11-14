@@ -87,6 +87,14 @@ Route::group(['prefix'=>'admin/division', 'middleware'=>'admin'], function(){
     Route::get('/', 'Admin\DivisionController@index')->name('backend.division.index');
 });
 
+Route::group(['prefix'=>'admin/district', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\DistrictController@index')->name('backend.district.index');
+});
+
+Route::group(['prefix'=>'admin/thana', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\ThanaController@index')->name('backend.thana.index');
+});
+
 Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
 Route::get('/about', 'Frontend\HomeController@about')->name('frontend.about');
 Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.campaign');
