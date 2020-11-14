@@ -97,13 +97,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link nav-post">
-                  <p>Districts</p>
+                <a href="{{ route('backend.district.index') }}" class="nav-link nav-post">
+                  <p>District</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link nav-post">
-                  <p>Thanas</p>
+                <a href="{{ route('backend.thana.index') }}" class="nav-link nav-thana">
+                  <p>Thana</p>
                 </a>
               </li>
             </ul>
