@@ -83,6 +83,10 @@ Route::group(['prefix'=>'admin/campaign', 'middleware'=>'admin'], function(){
     Route::post('/destroy', 'Admin\CampaignController@destroy')->name('backend.campaign.destroy');
 });
 
+Route::group(['prefix'=>'admin/division', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\DivisionController@index')->name('backend.division.index');
+});
+
 Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
 Route::get('/about', 'Frontend\HomeController@about')->name('frontend.about');
 Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.campaign');
