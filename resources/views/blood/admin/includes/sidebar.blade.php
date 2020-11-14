@@ -85,6 +85,29 @@
               <p>Campaign</p>
             </a>
           </li>
+          <li class="nav-item has-treeview menu-setting">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>Settings<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('backend.division.index') }}" class="nav-link nav-division">
+                  <p>Division</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link nav-post">
+                  <p>Districts</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link nav-post">
+                  <p>Thanas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
