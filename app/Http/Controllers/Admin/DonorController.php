@@ -7,6 +7,7 @@ use App\Models\BloodGroup;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
+use App\Models\Thana;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
@@ -18,118 +19,140 @@ class DonorController extends Controller
         $donors         = Donor::all();
         $blood_groups   = BloodGroup::all();
         $divisions      = Division::orderBy('name','ASC')->get();
-        return view('blood.admin.donor.donor', compact('donors','blood_groups','divisions'));
+        $districts      = District::all();
+        $thanas         = Thana::all();
+        return view('blood.admin.donor.donor', compact('donors','blood_groups','divisions','districts','thanas'));
     }
 
     //donor store
-    public function store(Request $request){
+    public function store(Request $request){ 
         $validators=Validator::make($request->all(),[
-            'en_name'  => 'required',
-            'bn_name'  => 'required',
-            'status'   => 'required',
-            'image'    => 'required',
+            'name'              => 'required',
+            'phone'             => 'required|unique:donors',
+            'dob'               => 'required',
+            'permanent_address' => 'required',
+            'current_address'   => 'required',
+            'blood_group_id'    => 'required',
+            'division_id'       => 'required',
+            'district_id'       => 'required',
+            'thana_id'          => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
-        }else{
-            $master_category                    = new MasterCategory();
-            $master_category->en_name           = $request->en_name;
-            $master_category->bn_name           = $request->bn_name;
-            $master_category->en_description    = $request->en_description ? $request->en_description : NULL;
-            $master_category->bn_description    = $request->bn_description ? $request->bn_description : NULL;
-            $master_category->status            = $request->status;
-            if($request->image){
-                $image          = $request->file('image');
-                $image_name     = "master_category_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'shobuj_bazar/backend/uploads/images/master-category/';
-                $image->move($directory, $image_name);
-                $image_url      = $directory.$image_name;
-                $master_category->image   = $image_url;
-            }
-            if($master_category->save()){
-                return Response::json([
-                    'status'    => 201,
-                    'message'   => "Master Category Created",
-                    'data'      => $master_category
-                ]);
-            }else{
-                return Response::json([
-                    'status'        => 403,
-                    'error_message' => "Something went wrong",
-                    'data'          => []
-                ]);
-            }
+        }        
+        $donor                      = new Donor();
+        $donor->name                = $request->name;
+        $donor->email               = isset($request->email) ? $request->email : Null;
+        $donor->phone               = $request->phone;
+        $donor->dob                 = $request->dob;
+        $donor->last_donate_date    = isset($request->last_donate_date) ? $request->last_donate_date : Null;
+        $donor->permanent_address   = $request->permanent_address;
+        $donor->current_address     = $request->current_address;
+        $donor->blood_group_id      = $request->blood_group_id;
+        $donor->division_id         = $request->division_id;
+        $donor->district_id         = $request->district_id;
+        $donor->thana_id            = $request->thana_id;
+        $donor->password            = bcrypt(123456); 
+        if($request->thumbnail){
+            $image          = $request->file('thumbnail');
+            $image_name     = time().".".$image->getClientOriginalExtension();
+            $directory      = 'blood/admin/uploads/images/donor/';
+            $image->move($directory, $image_name);
+            $image_url      = $directory.$image_name;
+            $donor->thumbnail= $image_url;
         }
+        if($donor->save()){
+            return Response::json([
+                'status'    => 201,
+                'message'   => "Donor Created",
+                'data'      => $donor
+            ]);
+        }else{
+            return Response::json([
+                'status'        => 403,
+                'error_message' => "Something went wrong",
+                'data'          => []
+            ]);
+        }        
     }
 
     //donor update
-    public function update(Request $request){
+    public function update(Request $request){ 
         $validators=Validator::make($request->all(),[
-            'en_name'  => 'required',
-            'bn_name'  => 'required',
-            'status'   => 'required',
+            'name'              => 'required',
+            'phone'             => 'required',
+            'dob'               => 'required',
+            'permanent_address' => 'required',
+            'current_address'   => 'required',
+            'blood_group_id'    => 'required',
+            'division_id'       => 'required',
+            'district_id'       => 'required',
+            'thana_id'          => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
-        }else{
-            $master_category                    = MasterCategory::find($request->id);
-            $master_category->en_name           = $request->en_name;
-            $master_category->bn_name           = $request->bn_name;
-            $master_category->en_description    = $request->en_description ? $request->en_description : NULL;
-            $master_category->bn_description    = $request->bn_description ? $request->bn_description : NULL;
-            $master_category->status            = $request->status;
-            if($request->image){
-                if($master_category->image != null && file_exists($master_category->image)){
-                    unlink($master_category->image);
-                }
-                $image          = $request->file('image');
-                $image_name     = "master_category_".time().".".$image->getClientOriginalExtension();
-                $directory      = 'shobuj_bazar/backend/uploads/images/master-category/';
-                $image->move($directory, $image_name);
-                $image_url      = $directory.$image_name;
-                $master_category->image   = $image_url;
+        }        
+        $donor                      = Donor::find($request->id);
+        $donor->name                = $request->name;
+        $donor->email               = isset($request->email) ? $request->email : Null;
+        $donor->phone               = $request->phone;
+        $donor->dob                 = $request->dob;
+        $donor->last_donate_date    = isset($request->last_donate_date) ? $request->last_donate_date : Null;
+        $donor->permanent_address   = $request->permanent_address;
+        $donor->current_address     = $request->current_address;
+        $donor->blood_group_id      = $request->blood_group_id;
+        $donor->division_id         = $request->division_id;
+        $donor->district_id         = $request->district_id;
+        $donor->thana_id            = $request->thana_id;
+        if($request->thumbnail){
+            if($donor->thumbnail != null && file_exists($donor->thumbnail)){
+                unlink($donor->thumbnail);
             }
-            if($master_category->update()){
-                return Response::json([
-                    'status'    => 201,
-                    'message'   => "Master Category Update",
-                    'data'      => $master_category
-                ]);
-            }else{
-                return Response::json([
-                    'status'        => 403,
-                    'error_message' => "Something went wrong",
-                    'data'          => []
-                ]);
-            }
+            $image          = $request->file('thumbnail');
+            $image_name     = time().".".$image->getClientOriginalExtension();
+            $directory      = 'blood/admin/uploads/images/donor/';
+            $image->move($directory, $image_name);
+            $image_url      = $directory.$image_name;
+            $donor->thumbnail= $image_url;
         }
+        if($donor->save()){
+            return Response::json([
+                'status'    => 201,
+                'message'   => "Donor Updated",
+                'data'      => $donor
+            ]);
+        }else{
+            return Response::json([
+                'status'        => 403,
+                'error_message' => "Something went wrong",
+                'data'          => []
+            ]);
+        }        
     }
 
     //donor destroy
-    public function destroy(Request $request)
-    {
-        $master_category = MasterCategory::find($request->id);
-        $category  = Category::where('master_category_id', $request->id)->first();
-        $product  = Product::where('master_category_id', $request->id)->first();
-        if($category != null){            
-            return Response::json([
-                'status'  => 403,
-                'message' => 'Sorry, this master category used in category table'
-            ]);
-        }else if($product != null){            
-            return Response::json([
-                'status'  => 403,
-                'message' => 'Sorry, this master category used in product table'
-            ]);
-        }else{ 
-            if(($master_category->image != null) && file_exists($master_category->image)){
-                unlink($master_category->image);
-            }
-            $master_category->delete();
-            return Response::json([
-                'status'  => 200,
-                'message' => 'This master category deleted'
-            ]);
+    public function destroy(Request $request){
+        $donor = Donor::find($request->id);
+        if(($donor->thumbnail != null) && file_exists($donor->thumbnail)){
+            unlink($donor->thumbnail);
         }
+        $donor->delete();
+        return Response::json([
+            'status'  => 200,
+            'message' => 'Donor deleted'
+        ]);
     }
+
+    //get district
+    public function getDistrict($division_id){
+        $districts = District::select('id','name')->where('division_id', $division_id)->orderBy('name','ASC')->get();        
+        return response()->json($districts);
+    }
+
+    //get district
+    public function getThana($district_id){
+        $thanas = Thana::select('id','name')->where('district_id', $district_id)->orderBy('name','ASC')->get();
+        return response()->json($thanas);
+    }
+
 }
