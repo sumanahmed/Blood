@@ -42,7 +42,6 @@
         </form>
       </div><!-- /.container-fluid -->
     </div>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -89,4 +88,9 @@
         </div>
       </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        $('.nav-dashboard').addClass('active');
+    </script>
 @endsection
