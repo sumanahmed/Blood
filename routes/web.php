@@ -18,6 +18,8 @@ Route::group(['prefix'=>'admin/donor', 'middleware'=>'admin'], function(){
     Route::post('/store', 'Admin\DonorController@store')->name('backend.donor.store');
     Route::post('/update', 'Admin\DonorController@update')->name('backend.donor.update');
     Route::post('/destroy', 'Admin\DonorController@destroy')->name('backend.donor.destroy');
+    Route::get('/district/{division_id}', 'Admin\DonorController@getDistrict')->name('backend.donor.district');
+    Route::get('/thana/{district_id}', 'Admin\DonorController@getThana')->name('backend.donor.thana');
 });
 
 Route::group(['prefix'=>'admin/user', 'middleware'=>'admin'], function(){
