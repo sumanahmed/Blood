@@ -1,5 +1,5 @@
 @extends('blood.admin.layout.admin')
-@section('title','Dashboard')
+@section('title','Donor')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -28,8 +28,7 @@
                                 <th>Name</th>
                                 <th>Blood Group</th>
                                 <th>Last Donate Date</th>
-                                <th>District</th>
-                                <th>Address</th>
+                                <th>Current Address</th>
                                 <th>Phone</th>
                                 <th>Image</th>
                                 <th>Action</th>
@@ -40,8 +39,7 @@
                                 <th>Name</th>
                                 <th>Blood Group</th>
                                 <th>Last Donate Date</th>
-                                <th>District</th>
-                                <th>Address</th>
+                                <th>Current Address</th>
                                 <th>Phone</th>
                                 <th>Image</th>
                                 <th>Action</th>
@@ -53,13 +51,17 @@
                                     <td>{{ $donor->name }}</td>
                                     <td>{{ $donor->bloodGroup->name }}</td>
                                     <td>{{ $donor->last_donate_date }}</td>
-                                    <td>{{ $donor->district->name }}</td>
                                     <td>{{ $donor->current_address }}</td>
                                     <td>{{ $donor->phone }}</td>
                                     <td><img src="{{ asset($donor->thumbnail) }}" alt="donor image" style="width: 60px;height: 60px;"></td>
                                     <td style="vertical-align:middle;text-align:center;">
-                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editDonor" data-target="#editDonormodal"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteDonor" data-target="#deleteDonormodal"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editDonor" data-target="#editDonormodal" title="Edit"
+                                        data-id="{{ $donor->id }}" data-name="{{ $donor->name }}" data-email="{{ $donor->email }}" data-phone="{{ $donor->phone }}"
+                                        data-dob="{{ $donor->dob }}" data-permanent_address="{{ $donor->permanent_address }}" data-current_address="{{ $donor->current_address }}" 
+                                        data-blood_group_id="{{ $donor->blood_group_id }}" data-division_id="{{ $donor->division_id }}" data-district_id="{{ $donor->district_id }}"
+                                        data-thana_id="{{ $donor->thana_id }}" data-status="{{ $donor->status }}" data-designation="{{ $donor->designation }}" 
+                                        data-thumbnail="{{ $donor->thumbnail }}" data-last_donate_date="{{ $donor->last_donate_date }}" ><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteDonor" data-id="{{ $donor->id }}" data-target="#deleteDonormodal"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -110,8 +112,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="division_id">Division <span class="text-danger" title="Required">*</span></label>
-                                    <select id="division_id" class="form-control select2">
-                                        <option value="0">Select Division</option>
+                                    <select id="division_id" class="form-control">
+                                        <option selected disabled>Select Division</option>
                                         @foreach($divisions as $division)
                                             <option value="{{ $division->id }}">{{ $division->name }}</option>
                                         @endforeach
@@ -124,7 +126,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
-                                    <select id="district_id" class="form-control select2">
+                                    <select id="district_id" class="form-control">
                                         <option value="">Select District</option>
                                     
                                     </select>
@@ -134,7 +136,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="thana_id">Thana <span class="text-danger" title="Required">*</span></label>
-                                    <select id="thana_id" class="form-control select2">
+                                    <select id="thana_id" class="form-control">
                                     <option value="">Select Thana</option>
                                     </select>
                                     <span class="text-danger errorThanaId"> </span>
@@ -153,7 +155,7 @@
                                 <div class="form-group">
                                     <label for="dob">Last Donate Date</label>
                                     <input type="text" id="last_donate_date" class="form-control datePicker">
-                                    <span class="text-danger errorDob"> </span>
+                                    <span class="text-danger errorLastDonateDate"> </span>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +190,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="dob">Thumbnail <span class="text-danger" title="Required">*</span></label>
-                                    <input type="file" id="thumbnail" class="form-control" required>
+                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control" required>
                                     <span class="text-danger erroThumbnail"> </span>
                                 </div>
                             </div>
@@ -212,97 +214,141 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                <form id="editDonorForm" method="POST" enctype="multipart/form-data">
+                    <form id="editDonorForm" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }} {{ method_field('POST') }}
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="name">Name <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="edit_name" class="form-control" placeholder="Enter Donar Full Name" required>
-                                <span class="text-danger errorName"> </span>
-                            </div>
-                        </div> 
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="name">Phone <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="edit_phone" class="form-control" placeholder="Enter Donar Phone Number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                <span class="text-danger errorPhone"> </span>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="edit_email" class="form-control" placeholder="Enter Donar Email">
-                                <span class="text-danger errorEmail"> </span>
-                            </div>
-                        </div> 
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="division_id">Division <span class="text-danger" title="Required">*</span></label>
-                                <select id="edit_division_id" class="form-control select2">
-                                  <option value="">Select Division</option>
-                                </select>
-                                <span class="text-danger errorDivisionId"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="name">Name <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="edit_name" class="form-control" placeholder="Enter Donar Full Name" required>
+                                    <input type="hidden" id="edit_id" />
+                                    <span class="text-danger errorName"> </span>
+                                </div>
+                            </div> 
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="name">Phone <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="edit_phone" class="form-control" placeholder="Enter Donar Phone Number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <span class="text-danger errorPhone"> </span>
+                                </div>
                             </div>
                         </div>
-                      </div>   
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="district_id">District <span class="text-danger" title="Required">*</span></label>
-                                <select id="edit_district_id" class="form-control select2">
-                                  <option value="">Select District</option>
-                                </select>
-                                <span class="text-danger errorDistrictId"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" id="edit_email" class="form-control" placeholder="Enter Donar Email">
+                                    <span class="text-danger errorEmail"> </span>
+                                </div>
+                            </div> 
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="edit_division_id">Division <span class="text-danger" title="Required">*</span></label>
+                                    <select id="edit_division_id" class="form-control">
+                                        <option selected disabled>Select Division</option>
+                                        @foreach($divisions as $division)
+                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger errorDivisionId"> </span>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="edit_district_id">District <span class="text-danger" title="Required">*</span></label>
+                                    <select id="edit_district_id" class="form-control">
+                                        @foreach($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger errorDistrictId"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="thana_id">Thana <span class="text-danger" title="Required">*</span></label>
+                                    <select id="edit_thana_id" class="form-control">
+                                        @foreach($thanas as $thana)
+                                            <option value="{{ $thana->id }}">{{ $thana->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger errorThanaId"> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="thana_id">Thana <span class="text-danger" title="Required">*</span></label>
-                                <select id="edit_thana_id" class="form-control select2">
-                                  <option value="">Select Thana</option>
-                                </select>
-                                <span class="text-danger errorThanaId"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="edit_dob" class="form-control datePicker" placeholder="Enter Donar Phone Number" required>
+                                    <span class="text-danger errorDob"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Last Donate Date</label>
+                                    <input type="text" id="edit_last_donate_date" class="form-control datePicker">
+                                    <span class="text-danger errorLastDonateDate"> </span>
+                                </div>
                             </div>
                         </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="dob">Date of Birth <span class="text-danger" title="Required">*</span></label>
-                                <input type="text" id="edit_dob" class="form-control datePicker" placeholder="Enter Donar Phone Number" required>
-                                <span class="text-danger errorDob"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="permanent_address">Permanent Address <span class="text-danger" title="Required">*</span></label>
+                                    <textarea id="edit_permanent_address" class="form-control" placeholder="Permanent Address" required></textarea>
+                                    <span class="text-danger errorPermanentAddress"> </span>
+                                </div>
+                            </div>                      
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="current_address">Current Address <span class="text-danger" title="Required">*</span></label>
+                                    <textarea id="edit_current_address" class="form-control" placeholder="Current Address" required></textarea>
+                                    <span class="text-danger errorCurrentAddress"> </span>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dob">Blood Group <span class="text-danger" title="Required">*</span></label>
+                                    <select id="edit_blood_group_id" class="form-control">
+                                        @foreach($blood_groups as $blood_group)
+                                            <option value="{{ $blood_group->id }}">{{ $blood_group->name }}</option>
+                                        @endforeach
+                                    </select>                                
+                                    <span class="text-danger errorBloodGroup"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="edit_status_id">Status <span class="text-danger" title="Required">*</span></label>
+                                    <select id="edit_status_id" class="form-control">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>                                
+                                    <span class="text-danger errorBloodGroup"> </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="dob">Last Donate Date</label>
-                                <input type="text" id="edit_last_donate_date" class="form-control datePicker">
-                                <span class="text-danger errorDob"> </span>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="edit_thumbnail">Current Thumbnail <span class="text-danger" title="Required">*</span></label>
+                                    <img src="" id="donorPreviousThumbnail" class="form-control" style="width: 110px;height:100px;">
+                                    <span class="text-danger erroThumbnail"> </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="edit_thumbnail">Thumbnail <span class="text-danger" title="Required">*</span></label>
+                                    <input type="file" name="thumbnail" id="edit_thumbnail" class="form-control" required>
+                                    <span class="text-danger erroThumbnail"> </span>
+                                </div>
                             </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="permanent_address">Permanent Address <span class="text-danger" title="Required">*</span></label>
-                                <textarea id="edit_permanent_address" class="form-control" placeholder="Enter Donar Permanent Address" required></textarea>
-                                <span class="text-danger errorPermanentAddress"> </span>
-                            </div>
-                        </div> 
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="current_address">Current Address <span class="text-danger" title="Required">*</span></label>
-                                <textarea id="edit_current_address" class="form-control" placeholder="Enter Donar Current Address" required></textarea>
-                                <span class="text-danger errorCurrentAddress"> </span>
-                            </div>
-                        </div> 
-                      </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -312,18 +358,18 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="deleteDonormodal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" tabindex="-1" id="deleteDonorModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-default" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">
                   <h5 class="modal-title text-center w-100">Delete Confirmation</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="del_id">
+                    <input type="hidden" name="del_id">
                     <h3 class="text-center">Are you sure to delete ?</h3>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="destroy">Delete</button>
+                    <button type="button" class="btn btn-success" id="destroyDonar">Delete</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
