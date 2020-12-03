@@ -14,9 +14,8 @@ class HomeController extends Controller
 {
     //show home page
     public function home(){ 
-        $campaigns = Campaign::where('status',1)->orderBy('id','DESC')->get();
         $gallerys  = Gallery::orderBy('id','DESC')->get();
-        return view("blood.frontend.home.index",compact('campaigns','gallerys'));
+        return view("blood.frontend.home.index",compact('gallerys'));
     }
     //show about page
     public function about(){ 
