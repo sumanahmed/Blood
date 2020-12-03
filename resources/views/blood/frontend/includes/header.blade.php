@@ -5,13 +5,16 @@
                 <div class="col-md-8 col-sm-12">
                     <p>Welcome to blood donation center.</p>
                 </div>
-                <div class="col-md-4col-sm-12">
+                <div class="col-md-4 col-sm-12">
                     <div class="top-bar-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-google-plus"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>                    
+                        <a href="{{ route('frontend.login') }}">Login</a>
+                        <a>|</a>
+                        <a href="{{ route('frontend.register') }}">Register</a>
                     </div>   
                 </div> 
             </div>
