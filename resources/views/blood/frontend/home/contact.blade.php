@@ -1,5 +1,5 @@
 @extends('blood.frontend.layout.frontend')
-@section('title','Gallery')
+@section('title','Contact')
 @section('content')
 <section class="page-header" data-stellar-background-ratio="1.2">
     <div class="container">
