@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'donor' => [
+            'driver' => 'session',
+            'provider' => 'donors',
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'donors' => [
+            'driver' => 'eloquent',
+            'table' => App\Models\Donor::class,
         ],
 
         // 'users' => [
@@ -98,6 +108,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'donors' => [
+            'provider' => 'donors',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 
