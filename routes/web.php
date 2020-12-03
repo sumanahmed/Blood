@@ -104,3 +104,7 @@ Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
 Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');
 Route::get('/blog', 'Frontend\HomeController@blog')->name('frontend.blog');
 Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
+Route::get('/register', 'Frontend\HomeController@register')->name('frontend.register');
+Route::post('/signup', 'Frontend\HomeController@signup')->name('frontend.signup');
+Route::get('/login', 'Frontend\HomeController@login')->name('frontend.login');
+Route::post('/signin', 'Frontend\HomeController@signin')->name('frontend.signin');
