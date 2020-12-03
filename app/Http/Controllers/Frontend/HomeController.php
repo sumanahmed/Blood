@@ -46,4 +46,25 @@ class HomeController extends Controller
     public function contact(){ 
         return view("blood.frontend.home.contact");
     }
+
+    //show register page
+    public function register(){ 
+        return view("blood.frontend.home.registration");
+    }
+
+    //manage signup
+    public function signup(Request $request){ 
+        dd($request);
+    }
+
+    //show register page
+    public function login(){ 
+        return view("blood.frontend.home.login");
+    }
+
+    //manage signin
+    public function signin(Request $request){ 
+        dd($request);
+    }
+
 }
