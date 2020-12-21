@@ -17,7 +17,7 @@
 <div class="login-box">
   <div class="card">
     <div class="card-body login-card-body">
-      <div class="login-logo"><img style="width: 120px;margin: 10px 82px;" src="{{ asset('blood/admin/images/logo.png') }}"/></div>
+      <div class="login-logo"><img style="width: 120px;margin: 10px 82px;" src="{{ asset('blood/frontend/images/logo.png') }}"/></div>
       <p class="login-box-msg">LOGIN PANEL</p>
       <form action="{{ route('backend.admin.signin') }}" method="POST" class="form-signin">
         @csrf
