@@ -85,6 +85,11 @@ Route::group(['prefix'=>'admin/campaign', 'middleware'=>'admin'], function(){
     Route::post('/destroy', 'Admin\CampaignController@destroy')->name('backend.campaign.destroy');
 });
 
+Route::group(['prefix'=>'admin/profile', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\AdminController@profile')->name('backend.profile');
+    Route::post('/update', 'Admin\AdminController@profileUpdate')->name('backend.profile.update');
+});
+
 Route::group(['prefix'=>'admin/division', 'middleware'=>'admin'], function(){
     Route::get('/', 'Admin\DivisionController@index')->name('backend.division.index');
 });

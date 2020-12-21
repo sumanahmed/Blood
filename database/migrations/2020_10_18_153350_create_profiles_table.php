@@ -27,7 +27,7 @@ class CreateProfilesTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('pinterest')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('privacy_policy');
             $table->string('terms_condition');
             $table->timestamps();

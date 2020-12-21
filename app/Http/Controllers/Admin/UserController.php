@@ -87,7 +87,7 @@ class UserController extends Controller
             if($user->save()){
                 return Response::json([
                     'status'    => 201,
-                    'message'   => "User created successfully",
+                    'message'   => "User updated successfully",
                     'data'      => $user
                 ]);
             }else{
