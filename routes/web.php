@@ -25,7 +25,9 @@ Route::group(['prefix'=>'admin/donor', 'middleware'=>'admin'], function(){
 Route::group(['prefix'=>'admin/user', 'middleware'=>'admin'], function(){
     Route::get('/', 'Admin\UserController@index')->name('backend.user.index');
     Route::post('/store', 'Admin\UserController@store')->name('backend.user.store');
+    Route::get('/edit/{id}', 'Admin\UserController@edit')->name('backend.user.edit');
     Route::post('/update', 'Admin\UserController@update')->name('backend.user.update');
+    Route::post('/edit/{id}', 'Admin\UserController@userUpdate')->name('backend.user.user_update');
     Route::post('/destroy', 'Admin\UserController@destroy')->name('backend.user.destroy');
 });
 
