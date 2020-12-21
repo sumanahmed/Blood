@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('backend.dashboard') }}" class="brand-link" style="background:#f4f6f9">
-      <div class="login-logo"><img style="width: 120px;" src="{{ asset('blood/admin/images/logo.png') }}"/></div>
+      <div class="login-logo"><img style="width: 120px;" src="{{ asset('blood/frontend/images/logo.png') }}"/></div>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
