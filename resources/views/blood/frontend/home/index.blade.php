@@ -21,6 +21,116 @@
 
     <section class="section-content-block section-process">
         <div class="container">
+            <div class="row" style="margin-bottom: 50px;">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <h2 class="section-heading"><span>Find</span> Donor</h2>                    
+                </div> <!-- end .col-sm-10  -->  
+            </div> <!--  end .row  -->
+
+            <div class="row wow fadeInUp mt-5">                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="search-form">
+                        <form action="{{ route('frontend.index') }}" method="GET">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="blood_group_id">Blood Group</label>
+                                        <select name="blood_group_id" id="blood_group_id" class="form-control select2">
+                                            <option selected disabled>Select</option>
+                                            @foreach($blood_groups as $blood_group)
+                                                <option value="{{ $blood_group->id }}">{{ $blood_group->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="division_id">Division</label>
+                                        <select name="division_id" id="division_id" class="form-control select2">
+                                            <option selected disabled>Select</option>
+                                            @foreach($divisions as $division)
+                                                <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="district_id">District</label>
+                                        <select name="district_id" id="district_id" class="form-control select2">
+                                            <option selected disabled>Select</option>
+                                            @foreach($districts as $district)
+                                                <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="thana_id">District</label>
+                                        <select name="thana_id" id="thana_id" class="form-control select2">
+                                            <option selected disabled>Select</option>
+                                            @foreach($thanas as $thana)
+                                                <option value="{{ $thana->id }}">{{ $thana->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="name">Donor Name</label>
+                                        <input type="text" id="name" name="name" placeholder="Enter Donor Name" class="form-control" style="height: 35px;">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default" style="margin-top: 26px;">Find <i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!--  end .col-lg-3 -->                
+            </div> <!--  end .row --> 
+
+            @if($donors)
+                <div class="row wow fadeInUp" style="margin-top: 30px;">                
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="donor_list">
+                            <table class="table table-bordered table-hover table-primary">
+                                <tr>
+                                    <th>Sl</th>
+                                    <th>Blood Group</th>
+                                    <th>Name</th>
+                                    <th>Mobile</th>
+                                    <th>Last Donate Date</th>
+                                    <th>Current Address</th>
+                                    <th>Image</th>
+                                </tr>
+                                @php $i=1; @endphp
+                                @foreach($donors as $donor)
+                                    <tr>
+                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $donor->bloodGroup->name }}</td>
+                                        <td>{{ $donor->name }}</td>
+                                        <td>{{ $donor->mobile }}</td>
+                                        <td>{{ date('d.m.Y', strtotime($donor->last_donate_date)) }}</td>
+                                        <td>{{ $donor->current_address }}</td>
+                                        <td><img src="{{ asset($donor->thumbnail) }}" style="width: 80px;height:60px;"/></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div> <!--  end .col-lg-3 -->
+                    
+                </div> <!--  end .row --> 
+            @endif
+        </div> <!--  end .container  -->
+    </section>
+
+    
+    <section class="section-content-block section-process">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <h2 class="section-heading"><span>Donation</span> Process</h2>

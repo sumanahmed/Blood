@@ -5089,3 +5089,7 @@ footer p {
 }
 
 /*# sourceMappingURL=styles.css.map */
+.search-form{
+  background: #ddd;
+  padding: 25px 20px;
+}

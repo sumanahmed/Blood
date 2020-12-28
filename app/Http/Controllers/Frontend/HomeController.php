@@ -9,13 +9,40 @@ use App\Models\Gallery;
 use App\Models\Faq;
 use App\Models\Category;
 use App\Models\Blog;
+use App\Models\BloodGroup;
+use App\Models\District;
+use App\Models\Division;
+use App\Models\Donor;
+use App\Models\Thana;
 
 class HomeController extends Controller
 {
     //show home page
     public function home(){ 
         $gallerys  = Gallery::orderBy('id','DESC')->get();
-        return view("blood.frontend.home.index",compact('gallerys'));
+        $blood_groups = BloodGroup::all();
+        $divisions = Division::all();
+        $districts = District::all();
+        $thanas    = Thana::all();
+        $donors    = Donor::select('*')
+                            ->when(request('blood_group_id'), function($query){
+                                return $query->where('blood_group_id',request('blood_group_id'));
+                            })
+                            ->when(request('division_id'), function($query){
+                                return $query->where('division_id',request('division_id'));
+                            })
+                            ->when(request('district_id'), function($query){
+                                return $query->where('district_id',request('district_id'));
+                            })
+                            ->when(request('thana_id'), function($query){
+                                return $query->where('thana_id',request('thana_id'));
+                            })
+                            ->when(request('name'), function($query){
+                                return $query->where('name','like', '%' . request('name') . '%');
+                            })
+                            ->where('status',1)
+                            ->get();
+        return view("blood.frontend.home.index",compact('gallerys','blood_groups','divisions','districts','thanas','donors'));
     }
     //show about page
     public function about(){ 

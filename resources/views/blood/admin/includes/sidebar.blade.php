@@ -8,7 +8,7 @@
       <nav>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="dashboard.html" class="nav-link nav-dashboard">
+            <a href="{{ route('backend.dashboard') }}" class="nav-link nav-dashboard">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
