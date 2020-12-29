@@ -14,6 +14,8 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
 use App\Models\Thana;
+use Auth;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -76,12 +78,51 @@ class HomeController extends Controller
 
     //show register page
     public function register(){ 
-        return view("blood.frontend.home.registration");
+        $divisions = Division::all();
+        $blood_groups = BloodGroup::all();
+        return view("blood.frontend.home.registration", compact('divisions','blood_groups'));
     }
 
     //manage signup
     public function signup(Request $request){ 
-        dd($request);
+        $this->validate($request, [
+            'name'              => 'required',
+            'phone'             => 'required|unique:donors',
+            'dob'               => 'required',
+            'permanent_address' => 'required',
+            'current_address'   => 'required',
+            'blood_group_id'    => 'required',
+            'division_id'       => 'required',
+            'district_id'       => 'required',
+            'thana_id'          => 'required',
+        ]);
+
+        $donor                      = new Donor();
+        $donor->name                = $request->name;
+        $donor->email               = isset($request->email) ? $request->email : Null;
+        $donor->phone               = $request->phone;
+        $donor->dob                 = $request->dob;
+        $donor->last_donate_date    = isset($request->last_donate_date) ? $request->last_donate_date : Null;
+        $donor->permanent_address   = $request->permanent_address;
+        $donor->current_address     = $request->current_address;
+        $donor->blood_group_id      = $request->blood_group_id;
+        $donor->division_id         = $request->division_id;
+        $donor->district_id         = $request->district_id;
+        $donor->thana_id            = $request->thana_id;
+        $donor->password            = bcrypt($request->password); 
+        if($request->hasFile('thumbnail') ){
+            $image          = $request->file('thumbnail');
+            $image_name     = time().".".$image->getClientOriginalExtension();
+            $directory      = 'blood/admin/uploads/images/donor/';
+            $image->move($directory, $image_name);
+            $image_url      = $directory.$image_name;
+            $donor->thumbnail= $image_url;
+        }
+        if($donor->save()){
+            return redirect()->route('frontend.login')->with('message','Registration complete');
+        }else{
+            return redirect()->route('frontend.login')->with('error_message','Sorry, something went wrong');
+        }        
     }
 
     //show register page
@@ -91,7 +132,25 @@ class HomeController extends Controller
 
     //manage signin
     public function signin(Request $request){ 
-        dd($request);
+        try {
+            $this->validate($request, [
+                'email_phone'     => 'required',
+                'password'  => 'required'
+            ]);
+    
+            if(filter_var($request->email_phone, FILTER_VALIDATE_EMAIL)) {
+                $email = $request->email_phone;
+                Auth::attempt(['email'=>$email,'password'=>$request->password]);
+                return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
+            } else {
+                $phone = $request->phone;
+                Auth::attempt(['phone'=>$phone,'password'=>$request->password]);
+                return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
+            }
+        } catch(Exception $e) {
+            return redirect()->route('frontend.login')->with('error_message',$e->getMessage());
+        }       
+
     }
 
     //get district

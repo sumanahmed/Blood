@@ -20,6 +20,7 @@
         <link href="{{ asset('blood/frontend/css/animate.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('blood/frontend/css/owl.carousel.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('blood/frontend/css/venobox.css') }}" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('blood/admin/css/toastr.css') }}">
         <link href="{{ asset('blood/frontend/css/styles.css') }}" rel="stylesheet"/>
         <link href="{{ asset('blood/frontend/css/custom.css') }}" rel="stylesheet"/>
         @yield('styles')
@@ -45,11 +46,47 @@
         <script src="{{ asset('blood/frontend/js/venobox.min.js') }}"></script>
         <script src="{{ asset('blood/frontend/js/custom-scripts.js') }}"></script>
         <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="{{ asset('blood/admin/js/toastr.js') }}"></script>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $('.table').DataTable();
             });
+
+            //get district by division_id
+            jQuery('#division_id').on('change', function() {
+                var division_id = jQuery(this).val();
+                console.log('yess');
+                jQuery.get('/district/'+ division_id,function(data){ 
+                    jQuery("#district_id").empty();
+                    jQuery("#district_id").append('<option selected disabled>Select</option>');
+                    for(var i=0; i < data.length; i++){
+                        jQuery("#district_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+                    }
+                });
+            });
+
+            //show district by division_id
+            jQuery('#district_id').on('change', function() {
+                var district_id = jQuery(this).val();
+                jQuery.get('/thana/'+ district_id,function(data){
+                    jQuery("#thana_id").empty();
+                    jQuery("#thana_id").append('<option selected disabled>Select</option>');
+                    for(var i=0; i < data.length; i++){
+                        jQuery("#thana_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+                    }
+                });
+            });
         </script>
+        @if(Session::has('error_message'))
+            <script>
+                toastr.error("{{ Session::get('error_message') }}")
+            </script>
+        @endif
+        @if(Session::has('message'))
+            <script>
+                toastr.success("{{ Session::get('message') }}")
+            </script>
+        @endif
         @yield('scripts')
     </body>
 </html>

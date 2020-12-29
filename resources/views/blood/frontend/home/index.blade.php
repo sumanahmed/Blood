@@ -442,32 +442,3 @@
         </div> <!-- end .container  -->
     </section> 
 @endsection
-
-@section('scripts')
-<script type="text/javascript">
-    //show district by division_id 
-        jQuery('#division_id').on('change', function() {
-            var division_id = jQuery(this).val();
-            console.log('yess');
-            jQuery.get('/district/'+ division_id,function(data){ 
-                jQuery("#district_id").empty();
-                jQuery("#district_id").append('<option selected disabled>Select</option>');
-                for(var i=0; i < data.length; i++){
-                    jQuery("#district_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
-                }
-            });
-        });
-
-        //show district by division_id
-        jQuery('#district_id').on('change', function() {
-            var district_id = jQuery(this).val();
-            jQuery.get('/thana/'+ district_id,function(data){
-                jQuery("#thana_id").empty();
-                jQuery("#thana_id").append('<option selected disabled>Select</option>');
-                for(var i=0; i < data.length; i++){
-                    jQuery("#thana_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
-                }
-            });
-        });
-</script>
-@endsection

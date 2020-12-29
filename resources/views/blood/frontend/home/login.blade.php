@@ -16,10 +16,16 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <input id="your_email" class="form-control" placeholder="Email" type="email">
+                                    <input type="text" name="email_phone" id="your_email" class="form-control" placeholder="Email or Phone">
+                                    @if( $errors->has('email_phone'))
+                                        <span class="text-danger">{{ $errors->first('email_phone') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input id="your_phone" class="form-control" placeholder="Phone" type="text">
+                                    <input type="password" name="password" id="your_phone" class="form-control" placeholder="Password">
+                                    @if( $errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
