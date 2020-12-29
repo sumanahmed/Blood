@@ -38,7 +38,7 @@
                                         <select name="blood_group_id" id="blood_group_id" class="form-control select2">
                                             <option selected disabled>Select</option>
                                             @foreach($blood_groups as $blood_group)
-                                                <option value="{{ $blood_group->id }}">{{ $blood_group->name }}</option>
+                                                <option value="{{ $blood_group->id }}" @if(isset($_GET['blood_group_id']) && $_GET['blood_group_id'] == $blood_group->id) selected @endif>{{ $blood_group->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -49,7 +49,7 @@
                                         <select name="division_id" id="division_id" class="form-control select2">
                                             <option selected disabled>Select</option>
                                             @foreach($divisions as $division)
-                                                <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                <option value="{{ $division->id }}" @if(isset($_GET['division_id']) && $_GET['division_id'] == $division->id) selected @endif>{{ $division->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -60,18 +60,18 @@
                                         <select name="district_id" id="district_id" class="form-control select2">
                                             <option selected disabled>Select</option>
                                             @foreach($districts as $district)
-                                                <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                                <option value="{{ $district->id }}" @if(isset($_GET['district_id']) && $_GET['district_id'] == $district->id) selected @endif>{{ $district->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="thana_id">District</label>
+                                        <label for="thana_id">Thana</label>
                                         <select name="thana_id" id="thana_id" class="form-control select2">
                                             <option selected disabled>Select</option>
                                             @foreach($thanas as $thana)
-                                                <option value="{{ $thana->id }}">{{ $thana->name }}</option>
+                                                <option value="{{ $thana->id }}" @if(isset($_GET['thana_id']) && $_GET['thana_id'] == $thana->id) selected @endif>{{ $thana->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -127,7 +127,6 @@
             @endif
         </div> <!--  end .container  -->
     </section>
-
     
     <section class="section-content-block section-process">
         <div class="container">
@@ -442,4 +441,33 @@
             </div> <!-- end .row  -->
         </div> <!-- end .container  -->
     </section> 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    //show district by division_id 
+        jQuery('#division_id').on('change', function() {
+            var division_id = jQuery(this).val();
+            console.log('yess');
+            jQuery.get('/district/'+ division_id,function(data){ 
+                jQuery("#district_id").empty();
+                jQuery("#district_id").append('<option selected disabled>Select</option>');
+                for(var i=0; i < data.length; i++){
+                    jQuery("#district_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+                }
+            });
+        });
+
+        //show district by division_id
+        jQuery('#district_id').on('change', function() {
+            var district_id = jQuery(this).val();
+            jQuery.get('/thana/'+ district_id,function(data){
+                jQuery("#thana_id").empty();
+                jQuery("#thana_id").append('<option selected disabled>Select</option>');
+                for(var i=0; i < data.length; i++){
+                    jQuery("#thana_id").append('<option value="'+ data[i].id +'">'+ data[i].name +'</option>');
+                }
+            });
+        });
+</script>
 @endsection

@@ -94,4 +94,15 @@ class HomeController extends Controller
         dd($request);
     }
 
+    //get district
+    public function getDistrict($division_id){
+        $districts = District::select('id','name')->where('division_id', $division_id)->orderBy('name','ASC')->get();        
+        return response()->json($districts);
+    }
+
+    //get district
+    public function getThana($district_id){
+        $thanas = Thana::select('id','name')->where('district_id', $district_id)->orderBy('name','ASC')->get();
+        return response()->json($thanas);
+    }
 }

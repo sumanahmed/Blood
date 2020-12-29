@@ -14,7 +14,6 @@
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <!-- The styles -->
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
         <link href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" />
         <link href="{{ asset('blood/frontend/css/bootstrap.min.css') }}" rel="stylesheet"/>
         <link href="{{ asset('blood/frontend/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -45,11 +44,9 @@
         <script src="{{ asset('blood/frontend/js/jquery.counterup.min.js') }}"></script>
         <script src="{{ asset('blood/frontend/js/venobox.min.js') }}"></script>
         <script src="{{ asset('blood/frontend/js/custom-scripts.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
         <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('.select2').select2();
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
                 $('.table').DataTable();
             });
         </script>
