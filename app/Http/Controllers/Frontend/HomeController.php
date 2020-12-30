@@ -134,11 +134,11 @@ class HomeController extends Controller
     public function signin(Request $request){ 
         try {
             $this->validate($request, [
-                'email_phone'     => 'required',
+                'phone'     => 'required',
                 'password'  => 'required'
             ]);
     
-            if(filter_var($request->email_phone, FILTER_VALIDATE_EMAIL)) {
+            /*if(filter_var($request->email_phone, FILTER_VALIDATE_EMAIL)) {
                 $email = $request->email_phone;
                 Auth::attempt(['email'=>$email,'password'=>$request->password]);
                 return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
@@ -146,7 +146,12 @@ class HomeController extends Controller
                 $phone = $request->phone;
                 Auth::attempt(['phone'=>$phone,'password'=>$request->password]);
                 return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
+            }*/
+            
+            if(Auth::guard('donor')->attempt(['phone'=>$request->phone,'password'=>$request->password]) ) {
+                return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');    
             }
+            
         } catch(Exception $e) {
             return redirect()->route('frontend.login')->with('error_message',$e->getMessage());
         }       

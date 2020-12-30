@@ -11,7 +11,7 @@
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-google-plus"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube"></i></a>                    
+                        <a href="#"><i class="fa fa-youtube"></i></a>  
                         <a href="{{ route('frontend.login') }}">Login</a>
                         <a>|</a>
                         <a href="{{ route('frontend.register') }}">Register</a>

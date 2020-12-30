@@ -115,5 +115,6 @@ Route::get('/register', 'Frontend\HomeController@register')->name('frontend.regi
 Route::post('/signup', 'Frontend\HomeController@signup')->name('frontend.signup');
 Route::get('/login', 'Frontend\HomeController@login')->name('frontend.login');
 Route::post('/signin', 'Frontend\HomeController@signin')->name('frontend.signin');
-Route::get('/district/{division_id}', 'Frontend\HomeController@getDistrict')->name('backend.donor.district');
-Route::get('/thana/{district_id}', 'Frontend\HomeController@getThana')->name('backend.donor.thana');
+Route::get('/district/{division_id}', 'Frontend\HomeController@getDistrict')->name('frontend.donor.district');
+Route::get('/thana/{district_id}', 'Frontend\HomeController@getThana')->name('frontend.donor.thana');
+Route::get('/donor/dashboard', 'Frontend\DonorController@dashboard')->name('frontend.donor.dashboard');
