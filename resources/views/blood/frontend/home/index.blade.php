@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label for="blood_group_id">Blood Group</label>
                                         <select name="blood_group_id" id="blood_group_id" class="form-control select2">
-                                            <option selected disabled>Select</option>
+                                            <option>Select</option>
                                             @foreach($blood_groups as $blood_group)
                                                 <option value="{{ $blood_group->id }}" @if(isset($_GET['blood_group_id']) && $_GET['blood_group_id'] == $blood_group->id) selected @endif>{{ $blood_group->name }}</option>
                                             @endforeach
@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <label for="division_id">Division</label>
                                         <select name="division_id" id="division_id" class="form-control select2">
-                                            <option selected disabled>Select</option>
+                                            <option>Select</option>
                                             @foreach($divisions as $division)
                                                 <option value="{{ $division->id }}" @if(isset($_GET['division_id']) && $_GET['division_id'] == $division->id) selected @endif>{{ $division->name }}</option>
                                             @endforeach
@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <label for="district_id">District</label>
                                         <select name="district_id" id="district_id" class="form-control select2">
-                                            <option selected disabled>Select</option>
+                                            <option>Select</option>
                                             @foreach($districts as $district)
                                                 <option value="{{ $district->id }}" @if(isset($_GET['district_id']) && $_GET['district_id'] == $district->id) selected @endif>{{ $district->name }}</option>
                                             @endforeach
@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <label for="thana_id">Thana</label>
                                         <select name="thana_id" id="thana_id" class="form-control select2">
-                                            <option selected disabled>Select</option>
+                                            <option>Select</option>
                                             @foreach($thanas as $thana)
                                                 <option value="{{ $thana->id }}" @if(isset($_GET['thana_id']) && $_GET['thana_id'] == $thana->id) selected @endif>{{ $thana->name }}</option>
                                             @endforeach
