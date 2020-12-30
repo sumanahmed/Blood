@@ -26,17 +26,19 @@ class HomeController extends Controller
         $divisions = Division::all();
         $districts = District::all();
         $thanas    = Thana::all();
+        $today     = date('Y-m-d');
+        $three_month= date('Y-m-d', strtotime('-90 days'));
         $donors    = Donor::select('*')
-                            ->when(request('blood_group_id'), function($query){
+                            ->when(request('blood_group_id') && request('blood_group_id') != 0, function($query){
                                 return $query->where('blood_group_id',request('blood_group_id'));
                             })
-                            ->when(request('division_id'), function($query){
+                            ->when(request('division_id') && request('division_id') != 0, function($query){
                                 return $query->where('division_id',request('division_id'));
                             })
-                            ->when(request('district_id'), function($query){
+                            ->when(request('district_id') && request('district_id') != 0, function($query){
                                 return $query->where('district_id',request('district_id'));
                             })
-                            ->when(request('thana_id'), function($query){
+                            ->when(request('thana_id') && request('thana_id') != 0, function($query){
                                 return $query->where('thana_id',request('thana_id'));
                             })
                             ->when(request('name'), function($query){
