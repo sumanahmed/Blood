@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\DonorController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -111,10 +112,14 @@ Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
 Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');
 Route::get('/blog', 'Frontend\HomeController@blog')->name('frontend.blog');
 Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
-Route::get('/register', 'Frontend\HomeController@register')->name('frontend.register');
-Route::post('/signup', 'Frontend\HomeController@signup')->name('frontend.signup');
-Route::get('/login', 'Frontend\HomeController@login')->name('frontend.login');
-Route::post('/signin', 'Frontend\HomeController@signin')->name('frontend.signin');
 Route::get('/district/{division_id}', 'Frontend\HomeController@getDistrict')->name('frontend.donor.district');
 Route::get('/thana/{district_id}', 'Frontend\HomeController@getThana')->name('frontend.donor.thana');
-Route::get('/donor/dashboard', 'Frontend\DonorController@dashboard')->name('frontend.donor.dashboard');
+
+Route::get('/register', 'Frontend\DonorController@register')->name('donor.register');
+Route::post('/signup', 'Frontend\DonorController@signup')->name('donor.signup');
+Route::get('/login', 'Frontend\DonorController@login')->name('donor.login');
+Route::post('/signin', 'Frontend\DonorController@signin')->name('donor.signin');
+Route::post('/donor/logout','Frontend\DonorController@logout')->name('donor.logout');
+Route::group(['prefix'=>'donor', 'middleware'=>'donor'], function(){
+    Route::get('/dashboard', 'Frontend\DonorController@dashboard')->name('donor.dashboard');
+});
