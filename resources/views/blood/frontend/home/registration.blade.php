@@ -12,7 +12,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
                     <div class="appointment-form-wrapper text-center clearfix">
                         <h3 class="join-heading">Request Appointment</h3>
-                        <form action="{{ route('frontend.signup') }}" method="post" class="appoinment-form"> 
+                        <form action="{{ route('donor.signup') }}" method="post" class="appoinment-form"> 
                             @csrf 
                             <div class="row">
                                 <div class="form-group col-md-6">
