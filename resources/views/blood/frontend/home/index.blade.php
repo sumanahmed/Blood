@@ -92,12 +92,12 @@
                     </div>
                 </div> <!--  end .col-lg-3 -->                
             </div> <!--  end .row --> 
-
-            @if($donors)
-                <div class="row wow fadeInUp" style="margin-top: 30px;">                
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="donor_list">
-                            <table class="table table-bordered table-hover table-primary">
+            
+            <div class="row wow fadeInUp" style="margin-top: 30px;">                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="donor_list">
+                        @if($donors && $donors->count() > 0)
+                            <table class="table table-bordered table-hover table-primary table-responsive" id="dtTable">
                                 <tr>
                                     <th>Sl</th>
                                     <th>Blood Group</th>
@@ -106,9 +106,15 @@
                                     <th>Last Donate Date</th>
                                     <th>Current Address</th>
                                     <th>Image</th>
+                                    <th>Status</th>
                                 </tr>
                                 @php $i=1; @endphp
                                 @foreach($donors as $donor)
+                                    @php 
+                                        $start  = date_create($donor->last_donate_date);
+                                        $end    = date_create($today);
+                                        $days   = date_diff($start, $end)->format("%a");                                                                        
+                                    @endphp
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $donor->bloodGroup->name }}</td>
@@ -117,14 +123,22 @@
                                         <td>{{ date('d.m.Y', strtotime($donor->last_donate_date)) }}</td>
                                         <td>{{ $donor->current_address }}</td>
                                         <td><img src="{{ asset($donor->thumbnail) }}" style="width: 60px;height:40px;"/></td>
+                                        <td>
+                                            @if($days > 90)
+                                                <span class="bg-green doante_status">Capable</span>
+                                            @else
+                                                <span class="bg-red doante_status">Not Capable</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>
-                        </div>
-                    </div> <!--  end .col-lg-3 -->
-                    
-                </div> <!--  end .row --> 
-            @endif
+                        @else 
+                            <h4 class="text-center">Sorry, Donor not found !</h4>
+                        @endif
+                    </div>
+                </div> <!--  end .col-lg-3 -->                    
+            </div> <!--  end .row -->             
         </div> <!--  end .container  -->
     </section>
     
