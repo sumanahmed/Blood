@@ -12,9 +12,18 @@
                         <a href="#"><i class="fa fa-google-plus"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
                         <a href="#"><i class="fa fa-youtube"></i></a>  
-                        <a href="{{ route('frontend.login') }}">Login</a>
-                        <a>|</a>
-                        <a href="{{ route('frontend.register') }}">Register</a>
+                        @if(!Auth::guard('donor')->check())
+                            <a href="{{ route('donor.login') }}">Login</a>
+                            <a>|</a>
+                            <a href="{{ route('donor.register') }}">Register</a>
+                        @else
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();">Logout</a>
+                            <form id="customerLogoutForm" action="{{ route('donor.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                           
+                        @endif
+                       
                     </div>   
                 </div> 
             </div>
