@@ -31,11 +31,13 @@ $(document).on('click', '#createPost', function (e) {
                 if(response.status === 201) {
                     $('#addPostModal').modal('hide');
                     toastr.success('Post successfully created')
+                    var status = response.data.status == 1 ? 'Show' : 'Hide';
                     $("#allPost").append('' +
                         '<tr class="post-'+ response.data.id +'">\n' +
                             '<td>'+ response.data.title +'</td>\n' +
-                            '<td>'+ response.data.link +'</td>\n' +
-                            '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
+                            '<td>'+ response.data.category_name +'</td>\n' +
+                            '<td><img src="'+ image_base_path + response.data.thumbnail +'" style="width:50px;"/></td>\n' +
+                            '<td>'+ status +'</td>\n' +
                             '<td style="vertical-align:middle;text-align:center;">\n' +
                                 '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
                                 '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
@@ -87,19 +89,21 @@ $("#updatePost").click(function (e) {
                 if(response.errors.title){
                     $('.errorTitle').text(response.errors.title);
                 }
-                if(response.errors.link){
-                    $('.errorLink').text(response.errors.link);
+                if(response.errors.category_id){
+                    $('.errorLink').text(response.errors.category_id);
                 }
                 if (response.errors.image) {
                     $('.erroImage').text(response.errors.image);
                 }
             }else{
+                var status = response.data.status == 1 ? 'Show' : 'Hide';
                 $('#editPostModal').modal('hide');
                 $("tr.post-"+ response.data.id).replaceWith('' +
                     '<tr class="post-'+ response.data.id +'">\n' +
                         '<td>'+ response.data.title +'</td>\n' +
-                        '<td>'+ response.data.link +'</td>\n' +
-                        '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
+                        '<td>'+ response.data.category_name +'</td>\n' +
+                        '<td><img src="'+ image_base_path + response.data.thumbnail +'" style="width:50px;"/></td>\n' +
+                        '<td>'+ status +'</td>\n' +
                         '<td style="vertical-align:middle;text-align:center;">\n' +
                             '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
                             '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
