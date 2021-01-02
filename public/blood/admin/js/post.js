@@ -13,7 +13,7 @@ $(document).on('click', '#createPost', function (e) {
         processData: false,
         contentType: false,
         data: form_data,
-        success:function(response){ console.log(response.errors.category_id);
+        success:function(response){ 
             if((response.errors)){
                 if(response.errors.title){
                     $('.errorTitle').text(response.errors.title);
@@ -27,22 +27,26 @@ $(document).on('click', '#createPost', function (e) {
                 if(response.errors.thumbnail) {
                     $('.erroImage').text(response.errors.thumbnail);
                 }
-            }else{
-                $('#addPostModal').modal('hide');
-                $("#allPost").append('' +
-                    '<tr class="post-'+ response.data.id +'">\n' +
-                        '<td>'+ response.data.title +'</td>\n' +
-                        '<td>'+ response.data.link +'</td>\n' +
-                        '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
-                        '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
-                            '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
-                        '</td>\n' +
-                    '</tr>'+
-                '');
-                $("#name").val('');
-                $("#image").val('');
-                toastr.success('Post successfully created')
+            }else{ console.log(response);
+                if(response.status === 201) {
+                    $('#addPostModal').modal('hide');
+                    toastr.success('Post successfully created')
+                    $("#allPost").append('' +
+                        '<tr class="post-'+ response.data.id +'">\n' +
+                            '<td>'+ response.data.title +'</td>\n' +
+                            '<td>'+ response.data.link +'</td>\n' +
+                            '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
+                            '<td style="vertical-align:middle;text-align:center;">\n' +
+                                '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editPost" data-target="#editPostModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-description="'+ response.data.description +'" data-category_id="'+ response.data.category_id +'" data-status="'+ response.data.status +'" data-thumbnail="'+ response.data.thumbnail +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                                '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deletePost" data-target="#deletePostModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
+                            '</td>\n' +
+                        '</tr>'+
+                    '');
+                } else {
+                    $("#title").val('');
+                    $("#category_id").val('');
+                    $("#description").val('');
+                }               
             }
         }
     });
