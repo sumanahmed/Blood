@@ -8,6 +8,7 @@ use App\Models\Faq;
 use App\Models\Category;
 use App\Models\Blog;
 use App\Models\BloodGroup;
+use App\Models\Campaign;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
@@ -52,7 +53,8 @@ class HomeController extends Controller
     }
     //show campaign page
     public function campaign(){ 
-        return view("blood.frontend.home.campaign");
+        $campaigns = Campaign::where('status',1)->get();
+        return view("blood.frontend.home.campaign",compact('campaigns'));
     }
     //show faq page
     public function faq(){ 
