@@ -45,7 +45,7 @@
                             @foreach($posts as $post)
                                 <tr class="post-{{ $post->id }}">
                                     <td>{{ $post->title }}</td>
-                                    <td>{{ $post->category->name }}</td>
+                                    <td>{{ $post->category_name }}</td>
                                     <td><img src="{{ asset($post->thumbnail) }}" alt="Post image" style="width: 60px;height: 60px;"></td>
                                     <td>{{ $post->status == 1 ? 'Show' : 'Hide' }}</td>
                                     <td style="vertical-align:middle;text-align:center;">
