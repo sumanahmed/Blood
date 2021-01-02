@@ -13,7 +13,10 @@ class PostController extends Controller
 {
     //get all posts
     public function index(){
-        $posts      = Blog::orderBy('id','DESC')->get();
+        $posts      = Blog::join('categories','categories.id','blogs.category_id')
+                            ->select('blogs.*','categories.name as category_name')
+                            ->orderBy('blogs.id','DESC')
+                            ->get();
         $categories = Category::all();
         return view('blood.admin.blog.post.post', compact('posts','categories'));
     }
@@ -41,6 +44,10 @@ class PostController extends Controller
                 $blog->thumbnail    = $thumbnail_url;
             } 
             if($blog->save()){
+                $blog = Blog::join('categories','categories.id','blogs.category_id')
+                            ->select('blogs.*','categories.name as category_name')
+                            ->where('blogs.id', $blog->id)
+                            ->first();
                 return Response::json([
                     'status'    => 201,
                     'message'   => "Post created successfully",
@@ -81,6 +88,10 @@ class PostController extends Controller
                 $blog->thumbnail= $thumbnail_url;
             }
             if($blog->save()){
+                $blog = Blog::join('categories','categories.id','blogs.category_id')
+                            ->select('blogs.*','categories.name as category_name')
+                            ->where('blogs.id', $blog->id)
+                            ->first();
                 return Response::json([
                     'status'    => 201,
                     'message'   => "Post updated successfully",
