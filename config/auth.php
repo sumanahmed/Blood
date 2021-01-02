@@ -78,7 +78,7 @@ return [
 
         'donors' => [
             'driver' => 'eloquent',
-            'table' => \App\Models\Donor::class,
+            'model' => \App\Models\Donor::class,
         ],
 
         // 'users' => [
