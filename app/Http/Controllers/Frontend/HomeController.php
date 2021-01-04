@@ -45,7 +45,8 @@ class HomeController extends Controller
                             })
                             ->where('status',1)
                             ->get();
-        return view("blood.frontend.home.index",compact('gallerys','blood_groups','divisions','districts','thanas','donors','today'));
+        $blogs = Blog::orderBy('id','DESC')->take(3)->get();
+        return view("blood.frontend.home.index",compact('gallerys','blood_groups','divisions','districts','thanas','donors','today','blogs'));
     }
     //show about page
     public function about(){ 
