@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Models\BloodGroup;
 use App\Models\Division;
@@ -12,7 +13,6 @@ use Auth;
 
 class DonorController extends Controller
 {
-
     //show register page
     public function register(){ 
         $divisions = Division::all();
@@ -55,11 +55,16 @@ class DonorController extends Controller
             $image_url      = $directory.$image_name;
             $donor->thumbnail= $image_url;
         }
-        if($donor->save()){
+        $donor->save();        
+        $msg    = 'Dear '.$donor->name.', Welcome to blood donation organization. Your login credential phone: '. $donor->phone.' and password:'.$request->password;
+        $client = new Client();
+        $sms    = $client->request("GET", "http://isms.zaman-it.com/smsapi?api_key=C20004125f16a40bed4d45.41246942 &type=text&contacts=". $donor->phone ."&senderid=8809612451774&msg=".$msg);
+        $sms_status_code = $sms->getStatusCode();
+        if($sms_status_code == 200){
             return redirect()->route('donor.login')->with('message','Registration complete');
         }else{
             return redirect()->route('donor.login')->with('error_message','Sorry, something went wrong');
-        }        
+        }   
     }
 
     //show register page
