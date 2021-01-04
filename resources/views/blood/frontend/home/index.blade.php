@@ -95,9 +95,9 @@
             
             <div class="row wow fadeInUp" style="margin-top: 30px;">                
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="donor_list">
+                    <div class="donor_list table-responsive">
                         @if($donors && $donors->count() > 0)
-                            <table class="table table-bordered table-hover table-primary table-responsive" id="dtTable">
+                            <table class="table table-bordered table-hover table-primary" id="dtTable">
                                 <tr>
                                     <th>Sl</th>
                                     <th>Blood Group</th>

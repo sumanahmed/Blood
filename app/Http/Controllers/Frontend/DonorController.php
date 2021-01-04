@@ -99,6 +99,8 @@ class DonorController extends Controller
 
     //show dashboard
     public function dashboard() {
-        return view("blood.frontend.donor.dashboard");
+        $divisions = Division::all();
+        $blood_groups = BloodGroup::all();
+        return view("blood.frontend.donor.dashboard", compact('divisions','blood_groups'));
     }
 }
