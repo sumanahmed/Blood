@@ -73,26 +73,15 @@ class DonorController extends Controller
             $this->validate($request, [
                 'phone'     => 'required',
                 'password'  => 'required'
-            ]);
-
-            /*if(filter_var($request->email_phone, FILTER_VALIDATE_EMAIL)) {
-                $email = $request->email_phone;
-                Auth::attempt(['email'=>$email,'password'=>$request->password]);
-                return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
-            } else {
-                $phone = $request->phone;
-                Auth::attempt(['phone'=>$phone,'password'=>$request->password]);
-                return redirect()->route('frontend.donor.dashboard')->with('message','Successfully logged in !');
-            }*/
-            
+            ]);    
             if(Auth::guard('donor')->attempt(['phone'=>$request->phone,'password'=>$request->password]) ) {
                 return redirect('donor/dashboard')->with('message','Successfully logged in !');    
-            }
-            
+            } else {
+                return redirect()->route('donor.login')->with('error_message', 'Phone or Password not match');    
+            }         
         } catch(Exception $e) {
             return redirect()->route('donor.login')->with('error_message',$e->getMessage());
-        }       
-
+        }    
     }
 
     //donor logout
