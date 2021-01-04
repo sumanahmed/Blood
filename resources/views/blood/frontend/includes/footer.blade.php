@@ -36,7 +36,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div> <!--  end .col-md-4 col-sm-12 -->   					                      
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -46,9 +45,9 @@
                                 <h3>Contact Us</h3>
                             </div>  <!--  end .footer-widget-header --> 
                             <div class="textwidget">     
-                                <i class="fa fa-envelope-o fa-contact"></i> <p><a href="#">support@donation.com</a><br/><a href="#">helpme@donation.com</a></p>
-                                <i class="fa fa-location-arrow fa-contact"></i> <p>Road-2,3/A East Shibgonj<br/>Sylhet-3100, Bangladesh</p>
-                                <i class="fa fa-phone fa-contact"></i> <p>Office:&nbsp; (+880) 0823 560 433<br/>Cell:&nbsp; (+880) 0723 161 343</p>   
+                                <i class="fa fa-envelope-o fa-contact"></i> <p><a href="#">support@blooddonation.com</a></p>
+                                <i class="fa fa-location-arrow fa-contact"></i> <p> House # 4, Banani, Rd No 1, Dhaka 1213, Bangladesh</p>
+                                <i class="fa fa-phone fa-contact"></i> <p>Cell:&nbsp; (+880) 185 095 9226</p>   
                             </div>
                         </div> <!-- end .footer-widget-wrapper  -->
                     </div> <!--  end .footer-widget  -->
@@ -61,65 +60,33 @@
                             </div>  <!--  end .footer-widget-header --> 
                             <ul class="footer-useful-links">
                                 <li>
-                                    <a href="#">
+                                    <a href="http://www.blooddonorsbd.com/" target="_blank">
                                         <i class="fa fa-caret-right fa-footer"></i>
-                                        Thalassemia
+                                        Blood Donors BD
+                                    </a>
+                                </li>                                
+                                <li>
+                                    <a href="https://badhan.org/" target="_blank">
+                                        <i class="fa fa-caret-right fa-footer"></i>
+                                        Badhan
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://blood.quantummethod.org.bd/en" target="_blank">
                                         <i class="fa fa-caret-right fa-footer"></i>
-                                        Cell Elofrosis
+                                        Quantum Method
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="http://www.bdquery.com/sandhani-blood-transfusion-posthumous-eye-donation" target="_blank">
                                         <i class="fa fa-caret-right fa-footer"></i>
-                                        Myelodysasia
+                                        Sandhani Blood
                                     </a>
-                                </li>
+                                </li>                               
                                 <li>
-                                    <a href="#">
+                                    <a href="http://www.bdrcs.org/donate-blood" target="_blank">
                                         <i class="fa fa-caret-right fa-footer"></i>
-                                        Blood Count
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Hemolytimia
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Ychromas Eosis 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Hyrcoagulable
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Thrombo Xtosis
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Sicklenemiaxs
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-caret-right fa-footer"></i>
-                                        Aplastic Anemia
+                                        Bangladesh Red Cresent Society
                                     </a>
                                 </li>
                             </ul>
@@ -136,30 +103,19 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-6 col-sm-12">
-                    <p class="copyright-text"> Copyright © 2017, All Right Reserved - by xenioushk </p>
+                    <p class="copyright-text"> Copyright © <?php echo date('Y'); ?>, All Right Reserved - Blood Donation </p>
                 </div>  <!-- end .col-sm-6  -->
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="footer-nav">
                         <nav>
                             <ul>
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">Causes</a>
-                                </li>
-                                <li>
-                                    <a href="donate.html">Events</a>
-                                </li>
-                                <li>
-                                    <a href="blog-with-sidebar.html">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="campaign-grid.html">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
+                                <li><a href="{{ route('frontend.index') }}" title="Home">Home</a></li>
+                                <li><a href="{{ route('frontend.about') }}" title="About Us">About Us</a></li>
+                                <li><a href="{{ route('frontend.campaign') }}">Campaigns</a></li>
+                                <li><a href="{{ route('frontend.faq') }}" title="FAQ">FAQ</a></li>
+                                <li><a href="{{ route('frontend.gallery') }}" title="Gallery">Gallery</a></li>
+                                <li><a href="{{ route('frontend.blog') }}">Blog</a></li> 
+                                <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div> <!--  end .footer-nav  -->
