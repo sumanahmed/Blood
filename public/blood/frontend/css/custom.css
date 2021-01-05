@@ -20,3 +20,6 @@
     padding: 5px 10px;
     color: #fff;
 }
+.page-header{
+    padding: 0px !important;
+}
