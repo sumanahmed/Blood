@@ -137,6 +137,7 @@
                             <h4 class="text-center">Sorry, Donor not found !</h4>
                         @endif
                     </div>
+                        {{ $donors->links() }}
                 </div> <!--  end .col-lg-3 -->                    
             </div> <!--  end .row -->             
         </div> <!--  end .container  -->

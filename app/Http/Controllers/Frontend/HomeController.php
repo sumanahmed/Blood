@@ -45,7 +45,7 @@ class HomeController extends Controller
                                 return $query->where('name','like', '%' . request('name') . '%');
                             })
                             ->where('status',1)
-                            ->get();
+                            ->paginate(5);
         $blogs = Blog::orderBy('id','DESC')->take(3)->get();
         $sliders= Slider::orderBy('id','DESC')->take(1)->get();
         return view("blood.frontend.home.index",compact('blood_groups','divisions','districts','thanas','donors','today','blogs','sliders'));
