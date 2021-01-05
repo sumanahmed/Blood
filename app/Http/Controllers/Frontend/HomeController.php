@@ -12,6 +12,7 @@ use App\Models\Campaign;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
+use App\Models\Sponsor;
 use App\Models\Thana;
 use Auth;
 use Exception;
@@ -50,7 +51,9 @@ class HomeController extends Controller
     }
     //show about page
     public function about(){ 
-        return view("blood.frontend.home.about");
+        $volunters = Donor::where('designation','!=','null')->take(3)->get();
+        $sponsors = Sponsor::all();
+        return view("blood.frontend.home.about",compact('volunters','sponsors'));
     }
     //show campaign page
     public function campaign(){ 
