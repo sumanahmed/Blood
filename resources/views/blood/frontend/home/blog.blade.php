@@ -80,7 +80,7 @@
                         @foreach($recent_blogs as $recent_blog)
                             <div class="single-recent-post">
                                 <a href="#">{{ $recent_blog->title }}</a>
-                                <span><i class="fa fa-calendar icon-color"></i>&nbsp; {{ date('j M, Y', strtotime($recent_blog->title)) }}</span>
+                                <span><i class="fa fa-calendar icon-color"></i>&nbsp; {{ date('F j, Y', strtotime($recent_blog->created_at)) }}</span>
                             </div>
                         @endforeach
                     </div>
