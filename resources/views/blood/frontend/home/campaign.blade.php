@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h3>Campaign Lists</h3>
+                    <h3>Campaign</h3>
                     <p class="page-breadcrumb">
-                        <a href="#">Home</a> / All Campaigns
+                        <a href="#">Home</a> / Campaign
                     </p>
                 </div>
             </div> <!-- end .row  -->
