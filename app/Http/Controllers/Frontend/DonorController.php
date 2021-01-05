@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Models\BloodGroup;
 use App\Models\Category;
+use App\Models\Blog;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
@@ -176,8 +176,8 @@ class DonorController extends Controller
     }
 
     //blog store
-    public function blogStore(Request $request) {
-
+    public function blogStore(Request $request, $id) 
+    {  
         $this->validate($request, [
             'title'         => 'required',
             'description'   => 'required',
@@ -187,6 +187,7 @@ class DonorController extends Controller
         $blog->title        = $request->title;
         $blog->description  = $request->description;
         $blog->category_id  = $request->category_id;
+        $blog->user_id      = $id;
         $blog->status       = 0;
         if($request->thumbnail){
             $thumbnail          = $request->file('thumbnail');
@@ -196,7 +197,7 @@ class DonorController extends Controller
             $thumbnail_url      = $directory.$thumbnail_name;
             $blog->thumbnail    = $thumbnail_url;
         } 
-        if($blog->store()){
+        if($blog->save()){
             return redirect()->route('donor.dashboard')->with('message','Blog added successfully');
         }else{
             return redirect()->route('donor.dashboard')->with('error_message','Sorry, something went wrong');

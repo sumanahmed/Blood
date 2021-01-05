@@ -223,7 +223,7 @@
                         <div class="tab-pane" id="blog"> 
                            
                             <div class="table-section">
-                                <div class="heading">
+                                <div class="heading" style="overflow: hidden;margin-bottom:10px;">
                                     <h5 class="text-left" style="float: left;">Blog</h5>
                                     <span class="text-right" style="float: right;">
                                         <a href="{{ route('donor.blog.create', $donor->id) }}" class="btn btn-success">Add New</a>
@@ -243,58 +243,58 @@
                                         @endforeach
                                     </table>
                                 @endif
-                            </div>
-                            
-                            @if(isset($status) && $status == 1)
-                                <div class="blog-add-section">
-                                    <form action="{{ route('donor.blog.store', $donor_id) }}" method="post" class="appoinment-form" enctype="multipart/form-data"> 
-                                        @csrf 
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="name">Title <span class="text-danger">*</span></label>
-                                                <input type="text" name="title" id="title" class="form-control" placeholder="Title" required>
-                                                @if( $errors->has('title'))
-                                                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="category_id">Category <span class="text-danger">*</span></label>
-                                                <div class="select-style">                                    
-                                                    <select class="form-control" name="category_id" id="category_id">
-                                                        <option>Select Category</option>
-                                                        @foreach($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if( $errors->has('category_id'))
-                                                        <span class="text-danger">{{ $errors->first('category_id') }}</span>
+
+                                @if(isset($status) && $status == 1) 
+                                    <div class="blog-create">
+                                        <form action="{{ route('donor.blog.store', $donor_id) }}" method="post" class="appoinment-form" enctype="multipart/form-data"> 
+                                            @csrf 
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="name">Title <span class="text-danger">*</span></label>
+                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Title" required>
+                                                    @if( $errors->has('title'))
+                                                        <span class="text-danger">{{ $errors->first('title') }}</span>
                                                     @endif
                                                 </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="category_id">Category <span class="text-danger">*</span></label>
+                                                    <div class="select-style">                                    
+                                                        <select class="form-control" name="category_id" id="category_id">
+                                                            <option>Select Category</option>
+                                                            @foreach($categories as $category)
+                                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if( $errors->has('category_id'))
+                                                            <span class="text-danger">{{ $errors->first('category_id') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;">
-                                                <label for="description">Description <span class="text-danger">*</span></label>
-                                                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Description" required></textarea>
-                                                @if( $errors->has('description'))
-                                                    <span class="text-danger">{{ $errors->first('description') }}</span>
-                                                @endif
-                                            </div> 
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="thumbnail">Thumbnail<span class="text-danger">*</span></label>                                   
-                                                <input type="file" class="form-control" name="thumbnail" id="thumbnail" />
+                                            <div class="row">
+                                                <div class="form-group col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;">
+                                                    <label for="description">Description <span class="text-danger">*</span></label>
+                                                    <textarea name="description" id="description" class="form-control" rows="4" placeholder="Description" required></textarea>
+                                                    @if( $errors->has('description'))
+                                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                                    @endif
+                                                </div> 
                                             </div>
-                                        </div>
-                                        <div class="row" style="margin-top: 30px;">
-                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                                <button id="btn_submit" class="btn-submit" type="submit">Submit</button>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="thumbnail">Thumbnail<span class="text-danger">*</span></label>                                   
+                                                    <input type="file" class="form-control" name="thumbnail" id="thumbnail" />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            @endif
+                                            <div class="row" style="margin-top: 30px;">
+                                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                    <button id="btn_submit" class="btn-submit" type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form> 
+                                    </div>                               
+                                @endif
+                            </div>                            
                         </div>
                     </div>
                 </div>
