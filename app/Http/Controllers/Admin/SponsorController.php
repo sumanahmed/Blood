@@ -21,12 +21,14 @@ class SponsorController extends Controller
         $validators=Validator::make($request->all(),[
             'title'  => 'required',
             'image' => 'required',
+            'link' => 'required',
         ]);
         if($validators->fails()){
             return Response::json(['errors'=>$validators->getMessageBag()->toArray()]);
         }else{
             $sponsor           = new Sponsor();
-            $sponsor->title     = $request->title;
+            $sponsor->title    = $request->title;
+            $sponsor->link     = $request->link;
             if($request->image){
                 $image          = $request->file('image');
                 $image_name     = "sponsor_".time().".".$image->getClientOriginalExtension();
@@ -61,6 +63,7 @@ class SponsorController extends Controller
         }else{
             $sponsor            = Sponsor::find($request->id);
             $sponsor->title     = $request->title;
+            $sponsor->link      = $request->link;
             if($request->image){
                 if($sponsor->image != null && file_exists($sponsor->image)){
                     unlink($sponsor->image);

@@ -43,7 +43,7 @@
                                     <td>{{ $sponsor->title }}</td>
                                     <td><img src="{{ asset($sponsor->image) }}" alt="Sponsorimage" style="width: 60px;height: 60px;"></td>
                                     <td style="vertical-align:middle;text-align:center;">
-                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsormodal" data-id="{{ $sponsor->id }}" data-title="{{ $sponsor->title }}" data-image="{{ $sponsor->image }}"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsormodal" data-id="{{ $sponsor->id }}" data-title="{{ $sponsor->title }}" data-link="{{ $sponsor->link }}" data-image="{{ $sponsor->image }}"><i class="fas fa-pencil-alt"></i></button>
                                         <button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteSponsor" data-target="#deleteSponsormodal" data-id="{{ $sponsor->id }}"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -74,6 +74,11 @@
                                     <label for="title">Title <span class="text-danger" title="Required">*</span></label>
                                     <input type="text" id="title" class="form-control" placeholder="Title" required>
                                     <span class="text-danger errorTitle"> </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="link">Link <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="link" class="form-control" placeholder="Link" required>
+                                    <span class="text-danger errorLink"> </span>
                                 </div>
                             </div> 
                         </div>
@@ -114,6 +119,11 @@
                                     <input type="text" id="edit_title" class="form-control" placeholder="Title" required>
                                     <input type="hidden" id="edit_id" />
                                     <span class="text-danger errorTitle"> </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_link">Link <span class="text-danger" title="Required">*</span></label>
+                                    <input type="text" id="edit_link" class="form-control" placeholder="Link" required>
+                                    <span class="text-danger errorLink"> </span>
                                 </div>
                             </div> 
                         </div>                        

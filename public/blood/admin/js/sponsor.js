@@ -24,6 +24,11 @@ $("#createSponsor").click(function (e) {
                 }else{
                     $('.erroImage').text('');
                 }
+                if (response.errors.link) {
+                    $('.erroLink').text(response.errors.link);
+                }else{
+                    $('.erroLink').text('');
+                }
             }else{
                 $('#addSponsorModal').modal('hide');
                 $("#allSponsor").append('' +
@@ -31,7 +36,7 @@ $("#createSponsor").click(function (e) {
                         '<td>'+ response.data.title +'</td>\n' +
                         '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
                         '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsorModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsorModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-link="'+ response.data.link +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
                             '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteSponsor" data-target="#deleteSponsorModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+
@@ -59,6 +64,7 @@ $("#updateSponsor").click(function (e) {
     var form_data = new FormData($("#editSponsorForm")[0]);
     form_data.append('id', $("#edit_id").val());
     form_data.append('title', $("#edit_title").val());
+    form_data.append('link', $("#edit_link").val());
     $.ajax({
         type:'POST',
         url: "/admin/sponsor/update",
@@ -79,6 +85,11 @@ $("#updateSponsor").click(function (e) {
                 }else{
                     $('.erroImage').text('');
                 }
+                if (response.errors.link) {
+                    $('.erroLink').text(response.errors.link);
+                }else{
+                    $('.erroLink').text('');
+                }
             }else{
                 $('#editSponsorModal').modal('hide');
                 $("tr.sponsor-"+ response.data.id).replaceWith('' +
@@ -86,7 +97,7 @@ $("#updateSponsor").click(function (e) {
                         '<td>'+ response.data.title +'</td>\n' +
                         '<td><img src="'+ image_base_path + response.data.image +'" style="width:50px;"/></td>\n' +
                         '<td style="vertical-align:middle;text-align:center;">\n' +
-                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsorModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
+                            '<button class="btn btn-warning btn-sm" data-toggle="modal" id="editSponsor" data-target="#editSponsorModal" data-id="'+ response.data.id +'" data-title="'+ response.data.title +'" data-link="'+ response.data.link +'" data-image="'+ response.data.image +'" title="Edit"><i class="fas fa-pencil-alt"></i></button>\n' +
                             '<button class="btn btn-danger btn-sm" data-toggle="modal" id="deleteSponsor" data-target="#deleteSponsorModal" data-id="'+ response.data.id +'" title="Delete"><i class="fas fa-trash"></i></button>\n' +
                         '</td>\n' +
                     '</tr>'+

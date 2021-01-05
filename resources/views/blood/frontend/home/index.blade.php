@@ -1,6 +1,25 @@
 @extends('blood.frontend.layout.frontend')
 @section('title','Home')
 @section('content')
+    <div class="slider-wrap">
+        <div id="slider_1" class="owl-carousel owl-theme">
+            @foreach($sliders as $slider)
+                <div class="item">
+                    <img src="{{ asset($slider->image) }}" alt="img">
+                    <div class="slider-content text-center">
+                        <div class="container">
+
+                            <div class="slider-contents-info">
+                                <h3>{{ $slider->title }}</h3>
+                                <a href="{{ route('donor.register') }}" class="btn btn-slider">Get Appontment <i class="fa fa-long-arrow-right"></i></a>
+                            </div> <!-- end .slider-contents-info  -->
+                        </div><!-- /.slider-content -->
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     <section class="section-banner">
         <div class="container wow fadeInUp">
             <div class="row">

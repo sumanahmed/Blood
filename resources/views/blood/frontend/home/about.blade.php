@@ -135,7 +135,9 @@
             <div class="logo-items logo-layout-1 text-center">
                 @foreach($sponsors as $sponsor) 
                     <div class="client-logo">
-                        <img src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->title }}" />
+                        <a href="{{ $sponsor->link }}" target="_blank">
+                            <img src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->title }}" />
+                        </a>
                     </div>
                 @endforeach
             </div> <!-- end .testimonial-container  -->
