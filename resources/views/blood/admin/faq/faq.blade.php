@@ -132,7 +132,7 @@
                     <h3 class="text-center">Are you sure to delete ?</h3>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="destroyfaq">Delete</button>
+                    <button type="button" class="btn btn-success" id="destroyFaq">Delete</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
