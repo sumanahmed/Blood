@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Donor;
+use App\Models\Gallery;
 use App\Models\Profile;
+use App\Models\Sponsor;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -43,7 +48,12 @@ class AdminController extends Controller
 
     //show dashboard
     public function dashboard(){
-        return view('blood.admin.dashboard.home');
+        $donor = Donor::count('id');
+        $sponsor = Sponsor::count('id');
+        $blog = Blog::count('id');
+        $image = Gallery::count('id');
+        $video = Video::count('id');
+        return view('blood.admin.dashboard.home',compact('donor','sponsor','blog','image','video'));
     }
 
     //show profile edit page

@@ -12,11 +12,14 @@ use App\Models\Campaign;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
+use App\Models\Profile;
 use App\Models\Slider;
 use App\Models\Sponsor;
 use App\Models\Thana;
 use Auth;
 use Exception;
+use Illuminate\Http\Request;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -50,27 +53,32 @@ class HomeController extends Controller
         $sliders= Slider::orderBy('id','DESC')->get();
         return view("blood.frontend.home.index",compact('blood_groups','divisions','districts','thanas','donors','today','blogs','sliders'));
     }
+    
     //show about page
     public function about(){ 
-        $volunters = Donor::where('designation','!=','null')->take(3)->get();
+        $volunters = Donor::where('designation','!=','null')->take(5)->get();
         $sponsors = Sponsor::all();
         return view("blood.frontend.home.about",compact('volunters','sponsors'));
     }
+    
     //show campaign page
     public function campaign(){ 
         $campaigns = Campaign::where('status',1)->get();
         return view("blood.frontend.home.campaign",compact('campaigns'));
     }
+    
     //show faq page
     public function faq(){ 
         $faqs = Faq::orderBy('id','desc')->get();
         return view("blood.frontend.home.faq",\compact('faqs'));
     }
+    
     //show gallery page
     public function gallery(){ 
         $gallerys  = Gallery::orderBy('id','DESC')->get();
         return view("blood.frontend.home.gallery",compact('gallerys'));
     }
+    
     //show blog page
     public function blog(){ 
         $categories   = Category::all();
@@ -78,9 +86,28 @@ class HomeController extends Controller
         $recent_blogs = Blog::orderBy('id','desc')->limit(3)->get();
         return view("blood.frontend.home.blog",compact('categories','blogs','recent_blogs'));
     }
+    
     //show contact page
     public function contact(){ 
-        return view("blood.frontend.home.contact");
+        $profile = Profile::find(1);
+        return view("blood.frontend.home.contact",compact('profile'));
+    }   
+    
+    //mail send
+    public function mailSend(Request $request){ 
+        $msg = $request->message;
+        $email = [
+            'to' => $request->email,
+            'subject' => $request->subject,
+            'name' => $request->name
+        ];
+        Mail::raw($msg, function ($message) use($email){
+            $message->from('blooddonation@gmail.com','Blood Donation');
+            $message->to($email['to']);
+            $message->subject($email['subject']);
+        });
+        
+        return redirect()->back()->with('message','Mail send successfully');
     }    
 
     //get district

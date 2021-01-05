@@ -2,10 +2,10 @@
     <div class="top-bar clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                     <p>Welcome to blood donation center.</p>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                     <div class="top-bar-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -17,6 +17,8 @@
                             <a>|</a>
                             <a href="{{ route('donor.register') }}">Register</a>
                         @else
+                            <a href="{{ route('donor.dashboard') }}">My Dashboard</a>
+                            <a>|</a>
                             <a href="#" onclick="event.preventDefault(); document.getElementById('customerLogoutForm').submit();">Logout</a>
                             <form id="customerLogoutForm" action="{{ route('donor.logout') }}" method="POST" style="display: none;">
                                 @csrf

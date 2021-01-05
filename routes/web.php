@@ -112,6 +112,7 @@ Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
 Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');
 Route::get('/blog', 'Frontend\HomeController@blog')->name('frontend.blog');
 Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
+Route::post('/mail-send', 'Frontend\HomeController@mailSend')->name('frontend.mail.send');
 Route::get('/district/{division_id}', 'Frontend\HomeController@getDistrict')->name('frontend.donor.district');
 Route::get('/thana/{district_id}', 'Frontend\HomeController@getThana')->name('frontend.donor.thana');
 

@@ -49,7 +49,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>5</h3>
+                <h3>{{ $donor }}</h3>
                 <p>Total Donor</p>
               </div>             
             </div>
@@ -59,7 +59,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>2</h3>
+                <h3>{{ $blog }}</h3>
                 <p>Total Blog</p>
               </div>              
             </div>
@@ -69,7 +69,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>2</h3>
+                <h3>{{ $video }}</h3>
                 <p>Total Video</p>
               </div>             
             </div>
@@ -79,7 +79,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>2</h3>
+                <h3>{{ $image }}</h3>
                 <p>Total Image</p>
               </div>              
             </div>

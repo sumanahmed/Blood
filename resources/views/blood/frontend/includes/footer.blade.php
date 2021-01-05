@@ -45,9 +45,12 @@
                                 <h3>Contact Us</h3>
                             </div>  <!--  end .footer-widget-header --> 
                             <div class="textwidget">     
-                                <i class="fa fa-envelope-o fa-contact"></i> <p><a href="#">support@blooddonation.com</a></p>
-                                <i class="fa fa-location-arrow fa-contact"></i> <p> House # 4, Banani, Rd No 1, Dhaka 1213, Bangladesh</p>
-                                <i class="fa fa-phone fa-contact"></i> <p>Cell:&nbsp; (+880) 185 095 9226</p>   
+                                @php 
+                                    $profile = \App\Models\Profile::find(1);
+                                @endphp
+                                <i class="fa fa-envelope-o fa-contact"></i> <p><a href="#">{{ $profile->email_1 }}</a></p>
+                                <i class="fa fa-location-arrow fa-contact"></i> <p>{{ $profile->address }}</p>
+                                <i class="fa fa-phone fa-contact"></i> <p>Cell:&nbsp; {{ $profile->mobile_1 }}</p>   
                             </div>
                         </div> <!-- end .footer-widget-wrapper  -->
                     </div> <!--  end .footer-widget  -->

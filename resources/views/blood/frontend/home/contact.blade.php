@@ -22,7 +22,7 @@
                 <ul class="contact-info">
                     <li>
                         <span class="icon-container"><i class="fa fa-home"></i></span>
-                        <address>House#4, Banani, Rd No 1, Dhaka</address>
+                        <address>{{ $profile->address }}</address>
                     </li>
                 </ul> 
             </div>
@@ -30,7 +30,7 @@
                 <ul class="contact-info">
                     <li>
                         <span class="icon-container"><i class="fa fa-phone"></i></span>
-                        <address><a href="#">+880 185 095 9226</a></address>
+                        <address><a href="#">{{ $profile->phone_1 }}</a></address>
                     </li>
                 </ul>     
             </div>
@@ -39,7 +39,7 @@
                 <ul class="contact-info">
                     <li>
                         <span class="icon-container"><i class="fa fa-envelope"></i></span>
-                        <address><a href="mailto:">support@blooddonation.com</a></address>
+                        <address><a href="mailto:">{{ $profile->email_1 }}</a></address>
                     </li>
                 </ul>    
             </div>
@@ -62,20 +62,21 @@
             <div class="col-sm-6 wow fadeInLeft">
                 <div class="contact-form-block">
                     <h2 class="contact-title">Say hello to us</h2>
-                    <form role="form" action="#" method="post" id="contact-form">
+                    <form role="form" action="{{ route('frontend.mail.send') }}" method="post" id="contact-form">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Name" data-msg="Please Write Your Name" />
+                            <input type="text" class="form-control" id="user_name" name="name" placeholder="Name" data-msg="Please Write Your Name" />
                         </div>
 
                         <div class="form-group">
-                            <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email" data-msg="Please Write Your Valid Email" />
+                            <input type="email" class="form-control" id="user_email" name="email" placeholder="Email" data-msg="Please Write Your Valid Email" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="email_subject" name="email_subject" placeholder="Subject" data-msg="Please Write Your Message Subject" />
+                            <input type="text" class="form-control" id="email_subject" name="subject" placeholder="Subject" data-msg="Please Write Your Message Subject" />
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" name="email_message" id="email_message" placeholder="Message" data-msg="Please Write Your Message" ></textarea>
+                            <textarea class="form-control" rows="5" name="email_message" id="message" placeholder="Message" data-msg="Please Write Your Message" ></textarea>
                         </div>
 
                         <div class="form-group">
