@@ -7,7 +7,7 @@
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="banner-content">
                         <h2>
-                            Donate blood and get real blessings.
+                            Donate blood.
                         </h2>					
                         <h3>Blood is the most precious gift that anyone can give to another person.<br>
                             Donating blood not only saves the life also save donor's lives.

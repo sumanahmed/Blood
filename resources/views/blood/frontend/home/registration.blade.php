@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 hidden-sm hidden-xs"> 
                     <figure class="appointment-img">
-                        <img src="{{ asset('blood/frontend/images/appointment.jpg') }}" alt="appointment image">
+                        <img src="{{ asset('blood/frontend/images/register.png') }}" alt="appointment image">
                     </figure>
                 </div> <!--  end col-lg-6  -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 

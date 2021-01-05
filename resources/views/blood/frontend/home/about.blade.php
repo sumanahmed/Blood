@@ -51,12 +51,6 @@
                         </article>
 
                         <div class="team-content">
-                            <div class="team-social-share text-center clearfix">
-                                <a class="fa fa-facebook rectangle" href="#" title="Facebook"></a>
-                                <a class="fa fa-twitter rectangle" href="#" title="Twitter"></a>
-                                <a class="fa fa-google-plus rectangle" href="#" title="Google Plus"></a>
-                                <a class="fa fa-linkedin rectangle" href="#" title="Linkedin"></a>
-                            </div> <!-- end .author-social-box  -->
                         </div>
                     </div> <!--  end team-layout-1 -->
                 </div> <!--  end .col-md-4 col-sm-12  -->

@@ -12,6 +12,7 @@ use App\Models\Campaign;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Donor;
+use App\Models\Slider;
 use App\Models\Sponsor;
 use App\Models\Thana;
 use Auth;
@@ -21,7 +22,6 @@ class HomeController extends Controller
 {
     //show home page
     public function home(){ 
-        $gallerys  = Gallery::orderBy('id','DESC')->get();
         $blood_groups = BloodGroup::all();
         $divisions = Division::all();
         $districts = District::all();
@@ -47,7 +47,8 @@ class HomeController extends Controller
                             ->where('status',1)
                             ->get();
         $blogs = Blog::orderBy('id','DESC')->take(3)->get();
-        return view("blood.frontend.home.index",compact('gallerys','blood_groups','divisions','districts','thanas','donors','today','blogs'));
+        $sliders= Slider::orderBy('id','DESC')->take(1)->get();
+        return view("blood.frontend.home.index",compact('blood_groups','divisions','districts','thanas','donors','today','blogs','sliders'));
     }
     //show about page
     public function about(){ 

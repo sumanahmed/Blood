@@ -1,15 +1,6 @@
 .appointment-form-wrapper .form-group label {
     float:left !important;
 }
-
-.appointment-img {
-    /* height: 650px; */
-    /* position: fixed; */
-    bottom: 0!important;
-    left: 0!important;
-    margin: 80px 0px!important;
-}
-
 .bg-green {
     background-color: green !important;
 }
@@ -25,4 +16,13 @@
 }
 ul.contact-info li address{
     font-size: 16px;
+}
+
+.appointment-img{
+    height: 100%;
+    padding-top: 70px !important;
+}
+
+.section-banner .banner-content h2,.section-banner .banner-content h3{
+    color:#000;
 }

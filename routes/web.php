@@ -122,4 +122,7 @@ Route::post('/signin', 'Frontend\DonorController@signin')->name('donor.signin');
 Route::post('/donor/logout','Frontend\DonorController@logout')->name('donor.logout');
 Route::group(['prefix'=>'donor', 'middleware'=>'donor'], function(){
     Route::get('/dashboard', 'Frontend\DonorController@dashboard')->name('donor.dashboard');
+    Route::post('/update/{id}', 'Frontend\DonorController@update')->name('donor.update');
+    Route::get('/blog-create/{id}', 'Frontend\DonorController@blogCreate')->name('donor.blog.create');
+    Route::post('/blog-store/{id}', 'Frontend\DonorController@blogStore')->name('donor.blog.store');
 });
