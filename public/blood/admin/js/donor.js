@@ -94,7 +94,7 @@ $(document).on('click', '#editDonor', function () {
 // update donar
 $("#updateDonor").click(function (e) {
     e.preventDefault();
-    var form_data = new FormData($("#editDonarForm")[0]);
+    var form_data = new FormData($("#editDonorForm")[0]);
     form_data.append('id', $("#edit_id").val());
     form_data.append('name', $("#edit_name").val());
     form_data.append('phone', $("#edit_phone").val());
