@@ -138,7 +138,7 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $donor->bloodGroup->name }}</td>
                                         <td>{{ $donor->name }}</td>
-                                        <td><a href="tel:{{ $donor->phone }}" style="color:#000">{{ $donor->phone }}</a></td>
+                                        <td style="text-align: center;"><a href="tel:{{ $donor->phone }}" style="color:#000"><i class="fa fa-phone"></i></a></td>
                                         <td>{{ date('d.m.Y', strtotime($donor->last_donate_date)) }}</td>
                                         <td>{{ $donor->current_address }}</td>
                                         <td><img src="{{ asset($donor->thumbnail) }}" style="width: 60px;height:40px;"/></td>
