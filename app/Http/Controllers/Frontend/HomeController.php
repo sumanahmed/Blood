@@ -16,6 +16,7 @@ use App\Models\Profile;
 use App\Models\Slider;
 use App\Models\Sponsor;
 use App\Models\Thana;
+use App\Models\Video;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
@@ -58,7 +59,8 @@ class HomeController extends Controller
     public function about(){ 
         $volunters = Donor::where('designation','!=','null')->take(5)->get();
         $sponsors = Sponsor::all();
-        return view("blood.frontend.home.about",compact('volunters','sponsors'));
+        $videos   = Video::all();
+        return view("blood.frontend.home.about",compact('volunters','sponsors','videos'));
     }
     
     //show campaign page
