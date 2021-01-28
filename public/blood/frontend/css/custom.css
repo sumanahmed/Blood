@@ -26,3 +26,11 @@ ul.contact-info li address{
 .section-banner .banner-content h2,.section-banner .banner-content h3{
     color:#000;
 }
+
+img.profile-img{
+    
+border: 2px solid #ddd;
+}
+
+.profile-content {margin-top: 45px;}
+.profile-content p{line-height: 16px;font-size: 18px;}

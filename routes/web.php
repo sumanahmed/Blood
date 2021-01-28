@@ -67,6 +67,38 @@ Route::group(['prefix'=>'admin/faq', 'middleware'=>'admin'], function(){
     Route::post('/destroy', 'Admin\FaqController@destroy')->name('backend.faq.destroy');
 });
 
+// Admin Ambulances 
+Route::group(['prefix'=>'admin/ambulance', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\AmbulanceController@index')->name('backend.ambulance.index');
+    Route::post('/store', 'Admin\AmbulanceController@store')->name('backend.ambulance.store');
+    Route::post('/update', 'Admin\AmbulanceController@update')->name('backend.ambulance.update');
+    Route::post('/destroy', 'Admin\AmbulanceController@destroy')->name('backend.ambulance.destroy');
+});
+
+// Admin  Symptom Routes
+Route::group(['prefix'=>'admin/symptom', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\SymptomController@index')->name('backend.symptom.index');
+    Route::post('/store', 'Admin\SymptomController@store')->name('backend.symptom.store');
+    Route::post('/update', 'Admin\SymptomController@update')->name('backend.symptom.update');
+    Route::post('/destroy', 'Admin\SymptomController@destroy')->name('backend.symptom.destroy');
+});
+
+// Admin Doctor Routes
+Route::group(['prefix'=>'admin/doctor', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\DoctorController@index')->name('backend.doctor.index');
+    Route::post('/store', 'Admin\DoctorController@store')->name('backend.doctor.store');
+    Route::post('/update', 'Admin\DoctorController@update')->name('backend.doctor.update');
+    Route::post('/destroy', 'Admin\DoctorController@destroy')->name('backend.doctor.destroy');
+});
+
+// Admin Medicine Routes
+Route::group(['prefix'=>'admin/medicine', 'middleware'=>'admin'], function(){
+    Route::get('/', 'Admin\MedicineController@index')->name('backend.medicine.index');
+    Route::post('/store', 'Admin\MedicineController@store')->name('backend.medicine.store');
+    Route::post('/update', 'Admin\MedicineController@update')->name('backend.medicine.update');
+    Route::post('/destroy', 'Admin\MedicineController@destroy')->name('backend.medicine.destroy');
+});
+
 Route::group(['prefix'=>'admin/slider', 'middleware'=>'admin'], function(){
     Route::get('/', 'Admin\SliderController@index')->name('backend.slider.index');
     Route::post('/store', 'Admin\SliderController@store')->name('backend.slider.store');
@@ -107,10 +139,14 @@ Route::group(['prefix'=>'admin/thana', 'middleware'=>'admin'], function(){
 
 Route::get('/', 'Frontend\HomeController@home')->name('frontend.index');
 Route::get('/about', 'Frontend\HomeController@about')->name('frontend.about');
+Route::get('/ambulance', 'Frontend\HomeController@ambulance')->name('frontend.ambulance');
+Route::get('/telemedicine', 'Frontend\HomeController@telemedicine')->name('frontend.telemedicine');
 Route::get('/campaign', 'Frontend\HomeController@campaign')->name('frontend.campaign');
 Route::get('/faq', 'Frontend\HomeController@faq')->name('frontend.faq');
 Route::get('/gallery', 'Frontend\HomeController@gallery')->name('frontend.gallery');
 Route::get('/blog', 'Frontend\HomeController@blog')->name('frontend.blog');
+Route::get('/privacy-policy', 'Frontend\HomeController@contact')->name('frontend.privacy_policy');
+Route::get('/terms-condition', 'Frontend\HomeController@contact')->name('frontend.terms_conditin');
 Route::get('/contact', 'Frontend\HomeController@contact')->name('frontend.contact');
 Route::post('/mail-send', 'Frontend\HomeController@mailSend')->name('frontend.mail.send');
 Route::get('/district/{division_id}', 'Frontend\HomeController@getDistrict')->name('frontend.donor.district');

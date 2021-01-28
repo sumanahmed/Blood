@@ -14,7 +14,6 @@
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <!-- The styles -->
-        <link href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" />
         <link href="{{ asset('blood/frontend/css/bootstrap.min.css') }}" rel="stylesheet"/>
         <link href="{{ asset('blood/frontend/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('blood/frontend/css/animate.css') }}" rel="stylesheet" type="text/css"/>
@@ -45,14 +44,9 @@
         <script src="{{ asset('blood/frontend/js/jquery.counterup.min.js') }}"></script>
         <script src="{{ asset('blood/frontend/js/venobox.min.js') }}"></script>
         <script src="{{ asset('blood/frontend/js/custom-scripts.js') }}"></script>        
+        <!--<script src="{{ asset('blood/frontend/js/script.js') }}"></script>        -->
         <script src="{{ asset('blood/admin/js/toastr.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>
         <script type="text/javascript">
-            jQuery(document).ready(function(){
-                jQuery('#dtTable').DataTable();
-            });
-
             //get district by division_id
             jQuery('#division_id').on('change', function() {
                 var division_id = jQuery(this).val();
@@ -89,5 +83,25 @@
             </script>
         @endif
         @yield('scripts')
+        <script>
+            (function () {
+                var options = {
+                    facebook: "104933878277761", // Facebook page ID
+                    call_to_action: "Message us", // Call to action
+                    position: "left", // Position may be 'right' or 'left'
+                };
+                var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+                s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+            })();
+        </script>
+        <!--<div class="fb-customerchat"-->
+        <!--     page_id="285468229665591"-->
+        <!--     theme_color="#459645"-->
+        <!--     logged_in_greeting="Hi! How can we help you?"-->
+        <!--     logged_out_greeting="GoodBye!... Hope to see you soon."-->
+        <!--     minimized="false">-->
+        <!--</div>-->
     </body>
 </html>

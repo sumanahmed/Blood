@@ -67,6 +67,30 @@
               <p>FAQs</p>
             </a>
           </li>
+            <li class="nav-item">
+            <a href="{{ route('backend.ambulance.index') }}" class="nav-link nav-ambulance">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Ambulances</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="{{ route('backend.symptom.index') }}" class="nav-link nav-symptom">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Symptom</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.doctor.index') }}" class="nav-link nav-medicine">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Doctor</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('backend.medicine.index') }}" class="nav-link nav-medicine">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Medicines</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('backend.slider.index') }}" class="nav-link nav-slider">
               <i class="nav-icon fas fa-users"></i>

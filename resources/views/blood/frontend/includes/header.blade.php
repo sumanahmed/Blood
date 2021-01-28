@@ -23,9 +23,7 @@
                             <form id="customerLogoutForm" action="{{ route('donor.logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                           
                         @endif
-                       
                     </div>   
                 </div> 
             </div>
@@ -46,8 +44,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ route('frontend.index') }}" title="Home">Home</a></li>
                         <li><a href="{{ route('frontend.about') }}" title="About Us">About Us</a></li>
+                        <li><a href="{{ route('frontend.ambulance') }}" title="Ambulance">Ambulance</a></li>
                         <li><a href="{{ route('frontend.campaign') }}">Campaigns</a></li>
-                        <li><a href="{{ route('frontend.faq') }}" title="FAQ">FAQ</a></li>
+                        <li><a href="{{ route('frontend.telemedicine') }}" title="Telemedicine">Telemedicine</a></li>
                         <li><a href="{{ route('frontend.gallery') }}" title="Gallery">Gallery</a></li>
                         <li><a href="{{ route('frontend.blog') }}">Blog</a></li> 
                         <li><a href="{{ route('frontend.contact') }}">Contact</a></li>

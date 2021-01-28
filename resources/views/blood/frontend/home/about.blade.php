@@ -3,24 +3,16 @@
 @section('content')
 <section class="page-header">
     <div class="container">
-
         <div class="row">
-
             <div class="col-sm-12 text-center">
-
                 <h3>
                     About Us
                 </h3>
-
                 <p class="page-breadcrumb">
                     <a href="#">Home</a> / About Us
                 </p>
-
-
             </div>
-
         </div> <!-- end .row  -->
-
     </div>
 </section>
 
@@ -70,8 +62,8 @@
         </div> <!-- end .row  -->
         <div class="row">
             @foreach($videos as $video)
-                <div class="col-lg-4 col-md-offset-0 col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">                    
-                    <iframe src="{{ $video->link }}" width="420" height="315" frameborder="0" allowfullscreen></iframe>
+                <div class="col-lg-4 col-md-offset-0 col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">      
+                    <iframe width="420" height="315" src="{{ $video->link }}" frameborder="0" allowfullscreen></iframe>
                 </div> <!--  end .col-md-4 col-sm-12  -->
             @endforeach
         </div> <!-- end .row  --> 

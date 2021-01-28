@@ -17,7 +17,8 @@
 <script src="{{ asset('blood/admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('blood/admin/js/toastr.js') }}"></script>
 <script>
-    var image_base_path = "http://localhost:8000/";
+    //var image_base_path = "http://localhost:8000/";
+    var image_base_path = "http://blood.imbidhan.me/";
     $('.select2').select2();
     $(function () {
       $(".data_table").DataTable();

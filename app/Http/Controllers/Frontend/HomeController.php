@@ -17,6 +17,9 @@ use App\Models\Slider;
 use App\Models\Sponsor;
 use App\Models\Thana;
 use App\Models\Video;
+use App\Models\Ambulance;
+use App\Models\Symptom;
+use App\Models\Medicine;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
@@ -61,6 +64,24 @@ class HomeController extends Controller
         $sponsors = Sponsor::all();
         $videos   = Video::all();
         return view("blood.frontend.home.about",compact('volunters','sponsors','videos'));
+    }
+    
+    //show about page
+    public function ambulance(){ 
+        $ambulances = Ambulance::paginate(10);
+        return view("blood.frontend.home.ambulance",compact('ambulances'));
+    }
+    
+    //show symptom & medicine
+    public function telemedicine(Request $request){ 
+        $symptoms   = Symptom::all();
+        $medicines  = Medicine::join('symptoms','symptoms.id','medicines.symptom_id')
+                            ->join('doctors','doctors.id','medicines.doctor_id')
+                            ->select('medicines.*','symptoms.name as symptom_name','doctors.name as doctor_name',
+                                    'doctors.designation','doctors.siting_place','doctors.specialist','doctors.image')
+                            ->where('medicines.symptom_id', $request->symptom_id)
+                            ->paginate(10);
+        return view("blood.frontend.home.telemedicine",compact('symptoms','medicines'));
     }
     
     //show campaign page
